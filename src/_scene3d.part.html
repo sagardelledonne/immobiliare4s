@@ -1,0 +1,479 @@
+<!-- SCENE3D:START -->
+<style>
+.scene-wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.scene{
+  position:relative;width:100%;aspect-ratio:16/11;border:1px solid var(--line);border-radius:2px;
+  background:
+    radial-gradient(120% 90% at 50% 8%, color-mix(in srgb,var(--brand) 9%,transparent), transparent 62%),
+    var(--surface);
+  overflow:hidden;touch-action:pan-y;
+}
+.scene canvas{display:block;width:100%;height:100%;cursor:grab}
+.scene canvas:active{cursor:grabbing}
+.scene-ph{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .5s ease;color:var(--line)}
+.scene-ph svg{width:46%;max-width:240px;height:auto}
+.scene-ph[hidden]{display:none}
+.scene-hint{
+  position:absolute;left:12px;bottom:10px;font-family:var(--f-display);font-stretch:74%;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;font-size:.62rem;color:var(--muted);pointer-events:none;
+}
+.scene-fb{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted);font-size:.92rem}
+.labels{position:absolute;inset:0;pointer-events:none}
+.labels span{
+  position:absolute;transform:translate(0,-50%);white-space:nowrap;
+  font-family:var(--f-display);font-stretch:76%;font-weight:650;text-transform:uppercase;
+  letter-spacing:.11em;font-size:.6rem;color:var(--ink);
+  background:color-mix(in srgb,var(--surface) 86%,transparent);
+  border:1px solid var(--line);border-radius:99px;padding:4px 9px;
+}
+.scene-side{display:grid;gap:16px;align-content:start}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:2px;overflow:hidden}
+.seg button{
+  flex:1;border:0;background:transparent;color:var(--ink);cursor:pointer;padding:11px 8px;
+  font-family:var(--f-display);font-weight:650;font-stretch:88%;font-size:.86rem;
+  transition:background-color .16s ease,color .16s ease;
+}
+.seg button + button{border-left:1.5px solid var(--line)}
+.seg button:hover{background:var(--line-soft)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.layers{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.layers li{
+  display:grid;grid-template-columns:14px minmax(0,1fr);gap:11px;align-items:baseline;
+  padding:11px 6px;border-bottom:1px solid var(--line);cursor:default;transition:background-color .16s ease;
+}
+.layers li:hover{background:var(--line-soft)}
+.layers i{width:14px;height:14px;border-radius:2px;display:block;align-self:center}
+.layers b{font-family:var(--f-display);font-weight:700;font-stretch:96%;font-size:.94rem;display:block}
+.layers span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45}
+@media (max-width:860px){
+  .scene-wrap{grid-template-columns:minmax(0,1fr)}
+  .scene{aspect-ratio:4/3}
+}
+</style>
+
+<section class="wrap section" id="tetto" style="padding-top:0">
+  <div class="shead">
+    <div>
+      <p class="eyebrow">Il tetto in sezione</p>
+      <h2>Cosa c'è sotto<br>le tegole.</h2>
+    </div>
+    <p class="lead">Un tetto rifatto bene non è solo il manto che si vede da terra. Gira il modello con il dito o con il mouse, apri gli strati e confronta com'era prima dei lavori.</p>
+  </div>
+
+  <div class="scene-wrap">
+    <div class="scene" id="scene">
+      <canvas id="c3d"></canvas>
+      <div class="labels" id="labels"></div>
+      <div class="scene-ph" id="scene-ph">
+        <svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 66 100 20l80 46"/>
+          <path d="M34 60v62h132V60"/>
+          <path d="M34 122h132"/>
+          <path d="M86 122V92h28v30"/>
+        </svg>
+      </div>
+      <p class="scene-hint" id="scene-hint">Trascina per girare</p>
+      <p class="scene-fb" id="scene-fb" hidden>Il modello 3D non è disponibile su questo dispositivo. Gli strati del tetto sono elencati qui accanto.</p>
+    </div>
+
+    <div class="scene-side">
+      <div class="seg" role="group" aria-label="Stato del tetto">
+        <button type="button" data-state="prima" aria-pressed="false">Prima dei lavori</button>
+        <button type="button" data-state="dopo" aria-pressed="true">Dopo</button>
+      </div>
+      <div class="seg" role="group" aria-label="Vista del tetto">
+        <button type="button" data-ex="1" aria-pressed="false">Strati aperti</button>
+        <button type="button" data-ex="0" aria-pressed="true">Tetto chiuso</button>
+      </div>
+      <ol class="layers" id="layers">
+        <li data-l="manto"><i style="background:#B5502F"></i><span><b>Manto di copertura</b>Coppi o tegole, posati su listello</span></li>
+        <li data-l="listelli"><i style="background:#8A6B45"></i><span><b>Listelli e controlistelli</b>Creano la ventilazione sotto il manto</span></li>
+        <li data-l="guaina"><i style="background:#39404E"></i><span><b>Guaina traspirante</b>Ferma l'acqua, lascia uscire il vapore</span></li>
+        <li data-l="coibentazione"><i style="background:#E3BE62"></i><span><b>Coibentazione</b>Il pannello che tiene il caldo d'inverno</span></li>
+        <li data-l="orditura"><i style="background:#7A5636"></i><span><b>Orditura</b>Travi e travetti, verificati uno a uno</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var host = document.getElementById('scene');
+  if (!host) return;
+  var cv = document.getElementById('c3d');
+  var ph = document.getElementById('scene-ph');
+  var fb = document.getElementById('scene-fb');
+  var labelBox = document.getElementById('labels');
+  var hint = document.getElementById('scene-hint');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var LAYERS = [
+    { k: 'manto',         th: 0.11, base: 0.46, spread: 1.00, dopo: 0xC05A33, prima: 0x7E6656, opt: false },
+    { k: 'listelli',      th: 0.07, base: 0.36, spread: 0.78, dopo: 0x8A6B45, prima: 0x8A6B45, opt: true },
+    { k: 'guaina',        th: 0.04, base: 0.29, spread: 0.56, dopo: 0x39404E, prima: 0x39404E, opt: true },
+    { k: 'coibentazione', th: 0.13, base: 0.20, spread: 0.34, dopo: 0xE3BE62, prima: 0xE3BE62, opt: true },
+    { k: 'orditura',      th: 0.17, base: 0.05, spread: 0.12, dopo: 0x7A5636, prima: 0x4C3723, opt: false }
+  ];
+
+  var tEx = 0, ex = 0, tPr = 0, pr = 0, az = -0.62, el = 0.30, drag = false, running = false, ready = false, first = true;
+  var THREEJS = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
+
+  function hasWebGL() {
+    try {
+      var c = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+    } catch (e) { return false; }
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      running = e.isIntersecting;
+      if (e.isIntersecting && !ready) { ready = true; boot(); }
+    });
+  }, { rootMargin: '250px 0px' });
+  io.observe(host);
+
+  function boot() {
+    if (!hasWebGL()) { fail(); return; }
+    var s = document.createElement('script');
+    s.src = THREEJS;
+    s.onload = build;
+    s.onerror = fail;
+    document.head.appendChild(s);
+  }
+  function fail() {
+    cv.hidden = true; ph.hidden = true; hint.hidden = true; fb.hidden = false;
+  }
+
+  function build() {
+    if (!window.THREE) { fail(); return; }
+    var T = window.THREE;
+
+    var renderer = new T.WebGLRenderer({ canvas: cv, alpha: true, antialias: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+
+    var scene = new T.Scene();
+    var camera = new T.PerspectiveCamera(36, 16 / 11, 0.5, 90);
+    var target = new T.Vector3(0, 2.0, 0);
+
+    scene.add(new T.HemisphereLight(0xffffff, 0x8b8272, 0.95));
+    var sun = new T.DirectionalLight(0xffffff, 1.05);
+    sun.position.set(6, 9, 5);
+    scene.add(sun);
+    var rim = new T.DirectionalLight(0xffd9a0, 0.3);
+    rim.position.set(-7, 4, -5);
+    scene.add(rim);
+
+    // piano di cantiere: griglia tecnica
+    var grid = new T.GridHelper(20, 20, 0xDD9933, 0xDD9933);
+    grid.material.transparent = true;
+    grid.material.opacity = 0.16;
+    grid.position.y = -0.02;
+    scene.add(grid);
+
+    function mat(hex, extra) {
+      var o = { color: hex };
+      if (extra) for (var k in extra) o[k] = extra[k];
+      return new T.MeshLambertMaterial(o);
+    }
+    function box(w, h, d, m) { return new T.Mesh(new T.BoxGeometry(w, h, d), m); }
+
+    function tileTex() {
+      var c = document.createElement('canvas'); c.width = 64; c.height = 64;
+      var g = c.getContext('2d');
+      g.fillStyle = '#ffffff'; g.fillRect(0, 0, 64, 64);
+      g.fillStyle = 'rgba(0,0,0,0.17)';
+      for (var i = 0; i < 64; i += 16) g.fillRect(0, i, 64, 3);
+      g.fillStyle = 'rgba(0,0,0,0.07)';
+      for (var j = 0; j < 64; j += 16) g.fillRect(j, 0, 2, 64);
+      var t = new T.CanvasTexture(c);
+      t.wrapS = t.wrapT = T.RepeatWrapping;
+      t.repeat.set(9, 4);
+      return t;
+    }
+
+    // ---- casa ----
+    var W = 4.4, D = 3.0, H = 2.2, RISE = 1.2, EAVE = 1.72;
+    var ang = Math.atan2(RISE, EAVE);
+    var slopeLen = Math.sqrt(EAVE * EAVE + RISE * RISE);
+    var house = new T.Group();
+    scene.add(house);
+
+    var wallMat = mat(0xE4DCCC);
+    var walls = box(4.0, H, D, wallMat);
+    walls.position.y = H / 2;
+    house.add(walls);
+
+    var plinth = box(4.25, 0.32, D + 0.25, mat(0xA9A192));
+    plinth.position.y = 0.16;
+    house.add(plinth);
+
+    // timpani
+    var sh = new T.Shape();
+    sh.moveTo(-D / 2, 0); sh.lineTo(D / 2, 0); sh.lineTo(0, RISE); sh.lineTo(-D / 2, 0);
+    var gab = new T.ExtrudeGeometry(sh, { depth: 0.18, bevelEnabled: false });
+    [-2.0, 1.82].forEach(function (x) {
+      var g = new T.Mesh(gab, wallMat);
+      g.rotation.y = Math.PI / 2;
+      g.position.set(x, H, 0);
+      house.add(g);
+    });
+
+    // aperture
+    var glass = mat(0x3C4450);
+    [[-1.15, 1.45], [1.15, 1.45]].forEach(function (p) {
+      var w = box(0.78, 0.92, 0.08, glass);
+      w.position.set(p[0], p[1], D / 2 + 0.01);
+      house.add(w);
+    });
+    var door = box(0.72, 1.5, 0.08, mat(0x6B4B32));
+    door.position.set(0, 0.9, D / 2 + 0.01);
+    house.add(door);
+
+    // ---- strati del tetto ----
+    var roof = new T.Group();
+    house.add(roof);
+    var texture = tileTex();
+
+    LAYERS.forEach(function (L) {
+      L.meshes = [];
+      L.mDopo = new T.Color(L.dopo);
+      L.mPrima = new T.Color(L.prima);
+      [1, -1].forEach(function (sgn) {
+        var m = new T.MeshLambertMaterial({ color: L.dopo, transparent: L.opt, opacity: 1 });
+        if (L.k === 'manto') m.map = texture;
+        var mesh = box(W, L.th, slopeLen, m);
+        mesh.rotation.x = sgn * ang;
+        mesh.userData.sgn = sgn;
+        mesh.userData.nx = 0;
+        mesh.userData.ny = Math.cos(ang);
+        mesh.userData.nz = sgn * Math.sin(ang);
+        L.meshes.push(mesh);
+        roof.add(mesh);
+      });
+    });
+
+    var ridge = box(W * 0.99, 0.16, 0.3, new T.MeshLambertMaterial({ color: 0xC05A33, map: texture }));
+    ridge.position.set(0, H + RISE + 0.5, 0);
+    roof.add(ridge);
+
+    // tegole mancanti (stato "prima")
+    var holes = [];
+    [[-1.3, 0.35], [0.5, -0.5], [1.5, 0.7], [-0.2, 0.9]].forEach(function (p) {
+      var h = new T.Mesh(new T.BoxGeometry(0.5, 0.05, 0.42), new T.MeshLambertMaterial({ color: 0x2A241C, transparent: true, opacity: 0 }));
+      h.userData.u = p[0]; h.userData.v = p[1];
+      holes.push(h);
+      roof.add(h);
+    });
+
+    // ---- gru ----
+    function crane(scale, dir) {
+      var g = new T.Group();
+      var steel = mat(0xDD9933);
+      var dark = mat(0x2A2620);
+      var mast = box(0.16, 5.2, 0.16, steel);
+      mast.position.y = 2.6;
+      g.add(mast);
+      [1.4, 2.6, 3.8].forEach(function (y) {
+        var c = box(0.34, 0.05, 0.05, dark);
+        c.position.y = y; c.rotation.z = 0.5; g.add(c);
+      });
+      var base = box(0.8, 0.16, 0.8, dark);
+      base.position.y = 0.08; g.add(base);
+
+      var slew = new T.Group();
+      slew.position.y = 5.2;
+      g.add(slew);
+      var jib = box(4.6, 0.13, 0.13, steel);
+      jib.position.x = 2.1; slew.add(jib);
+      var cjib = box(1.8, 0.13, 0.13, steel);
+      cjib.position.x = -0.95; slew.add(cjib);
+      var cw = box(0.5, 0.42, 0.46, dark);
+      cw.position.set(-1.6, -0.08, 0); slew.add(cw);
+      var cab = box(0.36, 0.34, 0.36, dark);
+      cab.position.set(0.1, -0.24, 0); slew.add(cab);
+      var tower = box(0.1, 0.9, 0.1, steel);
+      tower.position.y = 0.5; slew.add(tower);
+      var tie1 = box(2.2, 0.04, 0.04, steel);
+      tie1.position.set(1.1, 0.62, 0); tie1.rotation.z = -0.24; slew.add(tie1);
+      var tie2 = box(1.1, 0.04, 0.04, steel);
+      tie2.position.set(-0.55, 0.62, 0); tie2.rotation.z = 0.5; slew.add(tie2);
+
+      var line = box(0.03, 2.0, 0.03, dark);
+      line.position.set(3.4, -1.0, 0); slew.add(line);
+      var hook = box(0.3, 0.26, 0.3, dark);
+      hook.position.set(3.4, -2.1, 0); slew.add(hook);
+
+      g.scale.setScalar(scale);
+      g.userData.slew = slew;
+      g.userData.line = line;
+      g.userData.hook = hook;
+      g.userData.dir = dir;
+      return g;
+    }
+
+    var craneA = crane(0.62, 1);
+    craneA.position.set(-4.3, 0, -3.3);
+    scene.add(craneA);
+    var craneB = crane(0.44, -1);
+    craneB.position.set(4.1, 0, -5.0);
+    craneB.userData.slew.rotation.y = 2.1;
+    scene.add(craneB);
+
+    // ---- etichette ----
+    var tags = LAYERS.map(function (L) {
+      var s = document.createElement('span');
+      s.textContent = L.k.charAt(0).toUpperCase() + L.k.slice(1);
+      s.style.opacity = '0';
+      labelBox.appendChild(s);
+      return s;
+    });
+    var v = new T.Vector3();
+
+    // ---- interazione ----
+    var px = 0, py = 0;
+    host.addEventListener('pointerdown', function (e) {
+      drag = true; px = e.clientX; py = e.clientY;
+      if (cv.setPointerCapture) { try { cv.setPointerCapture(e.pointerId); } catch (err) {} }
+      if (hint) hint.hidden = true;
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      az -= (e.clientX - px) * 0.007;
+      el = Math.max(0.06, Math.min(0.72, el + (e.clientY - py) * 0.004));
+      px = e.clientX; py = e.clientY;
+    });
+    window.addEventListener('pointerup', function () { drag = false; });
+
+    function press(group, attr, val) {
+      group.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset[attr] === val)); });
+    }
+    var stateBtns = [].slice.call(document.querySelectorAll('[data-state]'));
+    var exBtns = [].slice.call(document.querySelectorAll('[data-ex]'));
+    stateBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        tPr = b.dataset.state === 'prima' ? 1 : 0;
+        press(stateBtns, 'state', b.dataset.state);
+        if (tPr === 1) { tEx = 0; press(exBtns, 'ex', '0'); }
+      });
+    });
+    exBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        tEx = b.dataset.ex === '1' ? 1 : 0;
+        press(exBtns, 'ex', b.dataset.ex);
+        if (tEx === 1) { tPr = 0; press(stateBtns, 'state', 'dopo'); }
+      });
+    });
+    document.querySelectorAll('#layers li').forEach(function (li) {
+      var set = function (on) {
+        LAYERS.forEach(function (L) {
+          if (L.k !== li.dataset.l) return;
+          L.meshes.forEach(function (m) { m.material.emissive.setHex(on ? 0x553a10 : 0x000000); });
+        });
+      };
+      li.addEventListener('mouseenter', function () { set(true); });
+      li.addEventListener('mouseleave', function () { set(false); });
+    });
+
+    // ---- resize ----
+    function resize() {
+      var w = host.clientWidth, h = host.clientHeight;
+      if (!w || !h) return;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(host);
+    else window.addEventListener('resize', resize);
+    resize();
+
+    ph.style.opacity = '0';
+    setTimeout(function () { ph.hidden = true; }, 520);
+
+    if (!reduce) {
+      setTimeout(function () {
+        if (tEx === 0 && tPr === 0) { tEx = 1; press(exBtns, 'ex', '1'); }
+      }, 900);
+    }
+
+    var col = new T.Color();
+    var C_RIDGE_A = new T.Color(0xC05A33), C_RIDGE_B = new T.Color(0x7E6656);
+    var C_WALL_A = new T.Color(0xE4DCCC), C_WALL_B = new T.Color(0xBFB3A0);
+    var clock = 0;
+
+    function frame() {
+      requestAnimationFrame(frame);
+      if (!running || document.hidden) return;
+      clock += 0.016;
+
+      var k = reduce ? 1 : 0.085;
+      ex += (tEx - ex) * k;
+      pr += (tPr - pr) * k;
+      if (!drag && !reduce) az += 0.0013;
+
+      var r = 13.8;
+      camera.position.set(
+        target.x + r * Math.cos(el) * Math.sin(az),
+        target.y + r * Math.sin(el) + 1.2,
+        target.z + r * Math.cos(el) * Math.cos(az)
+      );
+      camera.lookAt(target);
+
+      LAYERS.forEach(function (L, i) {
+        var d = L.base + ex * L.spread * 2.2;
+        L.meshes.forEach(function (m) {
+          m.position.set(0, H + RISE / 2 + m.userData.ny * d, m.userData.sgn * (EAVE / 2) + m.userData.nz * d);
+          col.copy(L.mDopo).lerp(L.mPrima, pr);
+          m.material.color.copy(col);
+          if (L.opt) {
+            m.material.opacity = 1 - pr;
+            m.visible = m.material.opacity > 0.03;
+          }
+        });
+        var m0 = L.meshes[0];
+        if (m0.visible) {
+          v.set(W * 0.5 + 0.7, 0, 0);
+          m0.localToWorld(v);
+          v.project(camera);
+          var t = tags[i];
+          t.style.left = ((v.x * 0.5 + 0.5) * 100) + '%';
+          t.style.top = ((-v.y * 0.5 + 0.5) * 100) + '%';
+          t.style.opacity = String(Math.max(0, (ex - 0.35) * 1.6) * (1 - pr));
+        } else {
+          tags[i].style.opacity = '0';
+        }
+      });
+
+      ridge.position.y = H + RISE + 0.5 + ex * 2.35;
+      ridge.material.color.copy(col.copy(C_RIDGE_A).lerp(C_RIDGE_B, pr));
+
+      holes.forEach(function (h, i) {
+        var L = LAYERS[0];
+        var m0 = L.meshes[h.userData.v > 0 ? 0 : 1];
+        h.position.copy(m0.position);
+        h.rotation.copy(m0.rotation);
+        h.translateX(h.userData.u);
+        h.translateZ(h.userData.v);
+        h.translateY(0.06);
+        h.material.opacity = pr * (1 - ex) * 0.95;
+        h.visible = h.material.opacity > 0.03;
+      });
+
+      wallMat.color.copy(col.copy(C_WALL_A).lerp(C_WALL_B, pr));
+
+      if (!reduce) {
+        craneA.userData.slew.rotation.y += 0.0026;
+        craneB.userData.slew.rotation.y -= 0.0019;
+        var bob = Math.sin(clock * 0.9) * 0.35;
+        craneA.userData.hook.position.y = -2.1 + bob;
+        craneA.userData.line.position.y = -1.0 + bob / 2;
+        craneA.userData.line.scale.y = 1 - bob / 2.2;
+      }
+
+      renderer.render(scene, camera);
+    }
+    frame();
+  }
+})();
+</script>
+<!-- SCENE3D:END -->

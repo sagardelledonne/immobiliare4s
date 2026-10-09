@@ -1,0 +1,1564 @@
+<title>Immobiliare 4S</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap">
+
+<style>
+/* Layout: blueprint grid — 1180px measure, hairline rules, truss band from the logo's crane lattice as the only ornament. */
+:root{
+  --paper:#F4F3F0;
+  --surface:#FFFFFF;
+  --ink:#14130F;
+  --muted:#6B6558;
+  --line:#DDD9D1;
+  --line-soft:#E9E6E0;
+  --brand:#DD9933;
+  --brand-ink:#8A5A12;
+  --ink-surface:#141210;
+  --ink-surface-2:#1E1A15;
+  --on-ink:#F3F0EA;
+  --on-ink-muted:#A8A093;
+  --on-ink-line:#302A22;
+
+  --f-display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-body:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+
+  --truss:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='34'%20height='18'%20viewBox='0%200%2034%2018'%3E%3Cg%20fill='none'%20stroke='%23DD9933'%20stroke-width='1.4'%3E%3Cpath%20d='M0%201.7h34M0%2016.3h34'/%3E%3Cpath%20d='M0%2016.3%2017%201.7%2034%2016.3'/%3E%3Cpath%20d='M0%201.7%2017%2016.3%2034%201.7'/%3E%3C/g%3E%3C/svg%3E");
+  --shadow:0 1px 2px rgba(20,19,15,.04),0 12px 32px -12px rgba(20,19,15,.16);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#100F0D;
+    --surface:#1A1713;
+    --ink:#F3F0EA;
+    --muted:#A39A8B;
+    --line:#2D2822;
+    --line-soft:#231F1A;
+    --brand:#E8A845;
+    --brand-ink:#E8A845;
+    --ink-surface:#1A1713;
+    --ink-surface-2:#221E18;
+    --on-ink:#F3F0EA;
+    --on-ink-muted:#A39A8B;
+    --on-ink-line:#332D25;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -14px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#100F0D;
+  --surface:#1A1713;
+  --ink:#F3F0EA;
+  --muted:#A39A8B;
+  --line:#2D2822;
+  --line-soft:#231F1A;
+  --brand:#E8A845;
+  --brand-ink:#E8A845;
+  --ink-surface:#1A1713;
+  --ink-surface-2:#221E18;
+  --on-ink:#F3F0EA;
+  --on-ink-muted:#A39A8B;
+  --on-ink-line:#332D25;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -14px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:1rem;
+  line-height:1.65;
+  font-stretch:100%;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--brand);outline-offset:3px;border-radius:2px}
+
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.018em;line-height:1.02}
+h1{font-size:clamp(2.55rem,7vw,4.6rem);font-weight:800;font-stretch:112%}
+h2{font-size:clamp(1.75rem,3.3vw,2.5rem);font-weight:750;font-stretch:108%;line-height:1.04}
+h3{font-size:1.18rem;font-weight:700;font-stretch:104%;line-height:1.2;letter-spacing:-.01em}
+p{margin:0}
+
+.wrap{width:100%;max-width:1260px;margin-inline:auto;padding-inline:20px}
+.section{padding-block:clamp(38px,4.2vw,62px)}
+.skip{position:absolute;left:-9999px;top:0;background:var(--brand);color:#14130F;padding:12px 18px;font-weight:700;z-index:100}
+.skip:focus{left:12px;top:12px}
+
+/* ---------- shared bits ---------- */
+.eyebrow{
+  font-family:var(--f-display);font-stretch:70%;font-weight:650;
+  text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;
+  color:var(--brand-ink);display:flex;align-items:center;gap:10px;margin:0 0 13px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:currentColor;flex:none}
+.on-dark .eyebrow{color:var(--brand)}
+
+.truss{height:18px;background-image:var(--truss);background-repeat:repeat-x;background-position:left center;opacity:.85}
+
+.lead{font-family:var(--f-serif);font-size:clamp(1.08rem,2.1vw,1.3rem);line-height:1.55;color:var(--muted);max-width:60ch}
+.on-dark .lead{color:var(--on-ink-muted)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--f-display);font-weight:700;font-stretch:96%;font-size:.95rem;
+  padding:15px 24px;border:1.5px solid transparent;border-radius:2px;
+  text-decoration:none;cursor:pointer;white-space:nowrap;
+  transition:transform .18s ease,background-color .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--brand);color:#14130F;border-color:var(--brand)}
+.btn-primary:hover{background:#EBA83F}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.on-dark .btn-ghost{color:var(--on-ink);border-color:var(--on-ink-line)}
+.on-dark .btn-ghost:hover{border-color:var(--on-ink)}
+.btn svg{width:17px;height:17px;flex:none}
+
+.logo-mark{
+  display:block;background:currentColor;flex:none;
+  -webkit-mask:url("img/logo-mark-only.png") center/contain no-repeat;
+  mask:url("img/logo-mark-only.png") center/contain no-repeat;
+}
+.logo-word{
+  display:block;background:currentColor;flex:none;
+  -webkit-mask:url("img/logo-wordmark.png") left center/contain no-repeat;
+  mask:url("img/logo-wordmark.png") left center/contain no-repeat;
+}
+
+/* ---------- header ---------- */
+.hdr{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:60;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:saturate(1.4) blur(14px);
+  -webkit-backdrop-filter:saturate(1.4) blur(14px);
+  border-bottom:1px solid transparent;transition:border-color .2s ease;
+}
+.hdr.is-stuck{border-bottom-color:var(--line)}
+.hdr-in{display:flex;align-items:center;gap:22px;min-height:76px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);margin-right:auto}
+.brand .logo-mark{width:42px;height:26px}
+.brand-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brand .logo-word{width:116px;height:11px}
+.brand small{
+  font-family:var(--f-display);font-stretch:66%;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;font-size:.6rem;color:var(--muted);line-height:1;
+}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{
+  font-family:var(--f-display);font-weight:600;font-stretch:92%;font-size:.92rem;
+  text-decoration:none;padding:9px 13px;border-radius:2px;color:var(--ink);
+  transition:background-color .16s ease;
+}
+.nav a:hover{background:var(--line-soft)}
+.hdr .btn{padding:12px 18px}
+.burger{
+  display:none;width:46px;height:46px;border:1.5px solid var(--line);background:transparent;
+  border-radius:2px;cursor:pointer;color:var(--ink);align-items:center;justify-content:center;
+}
+.burger svg{width:20px;height:20px}
+.mobilenav{display:none;border-top:1px solid var(--line);background:var(--paper)}
+.mobilenav ul{list-style:none;margin:0;padding:8px 20px 20px;display:grid;gap:2px}
+.mobilenav a{
+  display:block;padding:13px 4px;text-decoration:none;border-bottom:1px solid var(--line-soft);
+  font-family:var(--f-display);font-weight:650;font-stretch:96%;font-size:1.05rem;
+}
+.mobilenav .row{display:flex;gap:10px;padding:16px 20px 4px}
+.mobilenav .row .btn{flex:1}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(32px,4.4vw,58px) clamp(38px,5vw,66px);position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(32px,4.4vw,58px);align-items:center}
+.hero h1{margin-bottom:22px}
+.hero h1 .amp{color:var(--brand-ink);font-style:normal}
+.hero-rule{height:3px;background:var(--brand);width:72px;margin:0 0 24px;transform-origin:left;animation:draw .8s cubic-bezier(.22,1,.36,1) both}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-note{
+  margin-top:20px;font-family:var(--f-display);font-stretch:78%;font-size:.78rem;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600;
+}
+
+.hero-art{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.hero-art figure{margin:0;position:relative}
+.hero-art img{border-radius:2px;width:100%;aspect-ratio:3/4;object-fit:cover;box-shadow:var(--shadow)}
+.hero-art .ha2{margin-top:36px}
+.hero-art .tag{
+  position:absolute;left:0;bottom:14px;background:var(--brand);color:#14130F;
+  font-family:var(--f-display);font-stretch:74%;font-weight:750;text-transform:uppercase;
+  letter-spacing:.14em;font-size:.68rem;padding:8px 13px;
+}
+
+/* ---------- stats band ---------- */
+.band{background:var(--ink-surface);color:var(--on-ink)}
+.band .wrap{padding-block:clamp(32px,3.4vw,46px)}
+.stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--on-ink-line)}
+.stats li{background:var(--ink-surface);padding:22px 20px}
+.stats b{
+  display:block;font-family:var(--f-display);font-weight:800;font-stretch:104%;
+  font-size:clamp(2.2rem,4.4vw,3.1rem);line-height:1;color:var(--brand);
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+}
+.stats li > span{
+  display:block;margin-top:10px;font-family:var(--f-display);font-stretch:76%;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--on-ink-muted);line-height:1.4;
+}
+.stats b span{font-size:.62em;vertical-align:.14em;margin-left:.02em}
+
+/* ---------- section head ---------- */
+.shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(18px,3.4vw,48px);align-items:end;margin-bottom:clamp(20px,2.4vw,30px)}
+.shead .lead{margin-bottom:4px}
+
+/* ---------- servizi ---------- */
+.svc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc li{
+  background:var(--surface);padding:22px 20px 24px;
+  display:flex;flex-direction:column;gap:9px;transition:background-color .2s ease;
+}
+.svc li:hover{background:color-mix(in srgb,var(--brand) 7%,var(--surface))}
+.svc .ico{width:30px;height:30px;color:var(--brand-ink);margin-bottom:2px}
+.svc .ico svg{width:100%;height:100%}
+.svc h3{font-size:1.06rem}
+.svc p{font-size:.88rem;color:var(--muted);line-height:1.52}
+
+/* ---------- processo ---------- */
+.proc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(22px,3vw,34px);counter-reset:s}
+.proc li{border-top:2px solid var(--on-ink-line);padding-top:20px;counter-increment:s}
+.proc li::before{
+  content:counter(s,decimal-leading-zero);display:block;
+  font-family:var(--f-display);font-weight:800;font-stretch:104%;font-size:1.5rem;
+  color:var(--brand);font-variant-numeric:tabular-nums;margin-bottom:10px;line-height:1;
+}
+.proc h3{margin-bottom:8px}
+.proc p{font-size:.94rem;color:var(--on-ink-muted)}
+
+/* ---------- lavori ---------- */
+.lavori-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.rail-nav{display:flex;gap:8px}
+.rail-nav button{
+  width:42px;height:42px;border:1.5px solid var(--line);background:transparent;color:var(--ink);
+  border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:all .16s ease;
+}
+.rail-nav button:hover{border-color:var(--ink)}
+.rail-nav button:disabled{opacity:.3;cursor:default}
+.rail-nav button svg{width:18px;height:18px}
+.rail{
+  display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;padding-bottom:12px;
+  scroll-snap-type:x proximity;scroll-behavior:smooth;
+  scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+}
+.rail::-webkit-scrollbar{height:6px}
+.rail::-webkit-scrollbar-track{background:var(--line-soft);border-radius:99px}
+.rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.rail .shot{flex:0 0 clamp(210px,23.2%,300px);scroll-snap-align:start}
+.chip{
+  font-family:var(--f-display);font-weight:650;font-stretch:88%;font-size:.86rem;
+  padding:9px 16px;border:1.5px solid var(--line);background:transparent;color:var(--ink);
+  border-radius:99px;cursor:pointer;transition:all .16s ease;
+}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.shot{position:relative;margin:0;padding:0;border:0;background:var(--line-soft);cursor:zoom-in;overflow:hidden;border-radius:2px;display:block;width:100%;text-align:left}
+.shot img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.shot:hover img{transform:scale(1.045)}
+.shot figcaption{
+  position:absolute;inset:auto 0 0 0;padding:34px 14px 13px;color:#fff;
+  background:linear-gradient(to top,rgba(10,9,7,.88),rgba(10,9,7,0));
+  font-family:var(--f-display);font-weight:600;font-stretch:88%;font-size:.84rem;line-height:1.3;
+}
+.shot[hidden]{display:none}
+
+/* ---------- video ---------- */
+.video-card{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;align-items:center;
+  background:var(--ink-surface-2);color:var(--on-ink);padding:clamp(22px,2.6vw,30px);border-radius:2px;
+  text-decoration:none;transition:transform .2s ease;
+}
+.video-card:hover{transform:translateY(-3px)}
+.video-card h3{font-size:clamp(1.3rem,2.6vw,1.9rem);font-stretch:106%;margin-bottom:8px}
+.video-card p{color:var(--on-ink-muted);font-size:.95rem}
+.play{width:62px;height:62px;border-radius:50%;background:var(--brand);color:#14130F;display:grid;place-items:center;flex:none}
+.play svg{width:24px;height:24px}
+
+/* ---------- soci ---------- */
+.soci{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.soci li{background:var(--surface);border:1px solid var(--line);padding:20px 20px;border-radius:2px;display:flex;flex-direction:column;gap:12px}
+.soci .ini{
+  width:46px;height:46px;display:grid;place-items:center;background:var(--brand);color:#14130F;
+  font-family:var(--f-display);font-weight:800;font-stretch:100%;font-size:1.1rem;border-radius:2px;
+}
+.soci .role{
+  font-family:var(--f-display);font-stretch:74%;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;font-size:.67rem;color:var(--muted);margin-top:-8px;
+}
+.soci a{
+  font-family:var(--f-display);font-weight:650;font-stretch:96%;text-decoration:none;
+  color:var(--brand-ink);font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:7px;
+}
+.soci a:hover{text-decoration:underline}
+.soci a svg{width:15px;height:15px}
+
+/* ---------- faq ---------- */
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(28px,4vw,56px)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:nth-child(1),.faq details:nth-child(2){border-top:1px solid var(--line)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:20px 44px 20px 0;position:relative;
+  font-family:var(--f-display);font-weight:700;font-stretch:100%;font-size:1.02rem;line-height:1.35;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";position:absolute;right:8px;top:50%;width:13px;height:13px;
+  border-right:2px solid var(--brand);border-bottom:2px solid var(--brand);
+  transform:translateY(-70%) rotate(45deg);transition:transform .22s ease;
+}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq p{padding:0 8px 22px 0;color:var(--muted);font-size:.94rem;line-height:1.6}
+
+/* ---------- contatti ---------- */
+.contact{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,60px)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:start}
+.cards .card:nth-child(4){grid-column:1/-1}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:18px 18px 19px}
+.card .k{
+  font-family:var(--f-display);font-stretch:74%;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;font-size:.67rem;color:var(--muted);margin-bottom:9px;
+}
+.card .v{font-family:var(--f-display);font-weight:700;font-stretch:100%;font-size:1.12rem;line-height:1.35;word-break:break-word}
+.card .v a{text-decoration:none}
+.card .v a:hover{color:var(--brand-ink)}
+.card-row{display:flex;align-items:flex-start;gap:14px;justify-content:space-between}
+.copy{
+  border:1.5px solid var(--line);background:transparent;color:var(--muted);border-radius:2px;
+  font-family:var(--f-display);font-stretch:80%;font-weight:600;font-size:.7rem;text-transform:uppercase;
+  letter-spacing:.1em;padding:7px 10px;cursor:pointer;flex:none;transition:all .16s ease;
+}
+.copy:hover{border-color:var(--ink);color:var(--ink)}
+
+form{display:grid;gap:14px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:7px;min-width:0}
+label > span{
+  font-family:var(--f-display);font-stretch:76%;font-weight:600;text-transform:uppercase;
+  letter-spacing:.13em;font-size:.68rem;color:var(--muted);
+}
+input,select,textarea{
+  font-family:var(--f-body);font-size:.98rem;color:var(--ink);background:var(--surface);
+  border:1.5px solid var(--line);border-radius:2px;padding:13px 14px;width:100%;
+  transition:border-color .16s ease;
+}
+input:hover,select:hover,textarea:hover{border-color:var(--muted)}
+input:focus,select:focus,textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 26%,transparent)}
+textarea{resize:vertical;min-height:92px;line-height:1.55}
+.hint{font-size:.82rem;color:var(--muted);line-height:1.5}
+.sent{border:1.5px solid var(--brand);background:color-mix(in srgb,var(--brand) 9%,var(--surface));padding:20px;border-radius:2px;display:grid;gap:14px}
+.sent h3{font-size:1.05rem}
+.sent pre{
+  margin:0;white-space:pre-wrap;word-break:break-word;font-family:var(--f-body);font-size:.9rem;
+  line-height:1.55;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:14px;border-radius:2px;
+}
+.sent .row{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- footer ---------- */
+.ftr{background:var(--ink-surface);color:var(--on-ink);padding-block:clamp(36px,4.2vw,52px) 26px}
+.ftr-grid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:clamp(26px,4vw,48px);align-items:start}
+.ftr .logo-mark{width:74px;height:46px;margin-bottom:16px}
+.ftr h4{
+  font-family:var(--f-display);font-stretch:74%;font-weight:600;text-transform:uppercase;
+  letter-spacing:.16em;font-size:.68rem;color:var(--brand);margin:0 0 14px;
+}
+.ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.ftr a{text-decoration:none;color:var(--on-ink-muted);font-size:.94rem}
+.ftr a:hover{color:var(--on-ink)}
+.ftr p{color:var(--on-ink-muted);font-size:.94rem;line-height:1.7}
+.ftr-bot{
+  margin-top:30px;padding-top:20px;border-top:1px solid var(--on-ink-line);
+  display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;
+  font-size:.82rem;color:var(--on-ink-muted);
+}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:90;background:rgba(9,8,6,.94);display:grid;place-items:center;padding:20px}
+.lb[hidden]{display:none}
+.lb img{max-width:min(94vw,860px);max-height:78vh;width:auto;object-fit:contain;border-radius:2px}
+.lb figcaption{
+  color:#F3F0EA;text-align:center;margin-top:16px;font-family:var(--f-display);
+  font-weight:600;font-stretch:88%;font-size:.95rem;
+}
+.lb button{
+  position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;
+  width:48px;height:48px;border-radius:50%;cursor:pointer;display:grid;place-items:center;
+}
+.lb button:hover{background:rgba(255,255,255,.2)}
+.lb button svg{width:20px;height:20px}
+.lb .x{top:20px;right:20px}
+.lb .p{left:16px;top:50%;transform:translateY(-50%)}
+.lb .n{right:16px;top:50%;transform:translateY(-50%)}
+
+/* ---------- sticky mobile action bar ---------- */
+.dock{display:none}
+
+@media (max-width:1100px){
+  .svc{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc li{padding:22px 22px 24px}
+}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .shead{grid-template-columns:1fr;align-items:start;gap:14px}
+  .contact{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .faq{grid-template-columns:minmax(0,1fr)}
+  .faq details:nth-child(2){border-top:0}
+}
+@media (max-width:780px){
+  .nav,.hdr .btn-primary{display:none}
+  .burger{display:flex}
+  .mobilenav{display:block}
+  .mobilenav[hidden]{display:none}
+  .video-card{grid-template-columns:1fr;gap:20px}
+  .dock{
+    display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:70;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--paper) 94%,transparent);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+  }
+  .dock .btn{flex:1;padding:14px 10px;font-size:.9rem}
+  .ftr{padding-bottom:90px}
+}
+@media (max-width:560px){
+  .svc{grid-template-columns:minmax(0,1fr)}
+  .rail{gap:10px}
+  .rail .shot{flex:0 0 66%}
+  .shot figcaption{font-size:.78rem;padding:26px 11px 11px}
+  .rail-nav{display:none}
+}
+@media (max-width:520px){
+  .f2{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:1fr}
+  .stats li{padding:20px 16px}
+  .svc li{padding:20px 20px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .hero-rule{animation:none}
+}
+</style>
+
+<a class="skip" href="#main">Vai al contenuto</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="Immobiliare 4S Srl — torna all'inizio">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="brand-txt">
+        <span class="logo-word" aria-hidden="true"></span>
+        <small>Impresa edile · Cinisello Balsamo</small>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Principale">
+      <a href="#servizi">Servizi</a>
+      <a href="#lavori">Lavori</a>
+      <a href="#azienda">Chi siamo</a>
+      <a href="#domande">Domande</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <a class="btn btn-primary" href="tel:+390267177263">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      02 6717 7263
+    </a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Apri il menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div class="mobilenav" id="mnav" hidden>
+    <ul>
+      <li><a href="#servizi">Servizi</a></li>
+      <li><a href="#lavori">Lavori</a></li>
+      <li><a href="#azienda">Chi siamo</a></li>
+      <li><a href="#domande">Domande</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <div class="row">
+      <a class="btn btn-primary" href="tel:+390267177263">Chiama</a>
+      <a class="btn btn-ghost" href="#contatti">Preventivo</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div id="top"></div>
+
+  <!-- HERO -->
+  <section class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Impresa edile · Cinisello Balsamo (MI)</p>
+        <h1>Costruiamo<br>il tuo sogno.</h1>
+        <div class="hero-rule"></div>
+        <p class="lead">Tetti, facciate, lattoneria e ristrutturazioni complete in tutta l'area nord di Milano. Quattro soci, più di trent'anni di cantieri a testa, e un preventivo scritto voce per voce prima di toccare un mattone.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contatti">Richiesta di preventivo</a>
+          <a class="btn btn-ghost" href="#lavori">Guarda i lavori</a>
+        </div>
+        <p class="hero-note">Sopralluogo gratuito · Lun–Ven 8:00–20:00</p>
+      </div>
+      <div class="hero-art">
+        <figure class="ha1">
+          <img src="img/facciata-ponteggio.webp" alt="Ponteggio montato sulla facciata di una palazzina durante il rifacimento" width="728" height="975" fetchpriority="high">
+          <span class="tag">Cantiere reale</span>
+        </figure>
+        <figure class="ha2">
+          <img src="img/tetto-tegole.webp" alt="Manto di copertura in tegole appena posato" width="728" height="975" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="truss" aria-hidden="true"></div></div>
+
+  <!-- NUMERI -->
+  <section class="band on-dark">
+    <div class="wrap">
+      <ul class="stats">
+        <li><b>260<span aria-hidden="true">+</span></b><span>Cantieri completati</span></li>
+        <li><b>30<span aria-hidden="true">+</span></b><span>Anni di esperienza per socio</span></li>
+        <li><b>4</b><span>Soci, sempre in cantiere</span></li>
+        <li><b>10</b><span>Lavorazioni, dal tetto alle finiture</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section class="wrap section" id="servizi">
+    <div class="shead">
+      <div>
+        <p class="eyebrow">Cosa facciamo</p>
+        <h2>Dieci lavorazioni,<br>un unico interlocutore.</h2>
+      </div>
+      <p class="lead">Dal rifacimento del tetto alla stuccatura prima della tinteggiatura. Se un intervento ne richiede altri, li coordiniamo noi: niente rimpalli fra ditte diverse.</p>
+    </div>
+
+    <ul class="svc">
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16 16 5l13 11"/><path d="M6.5 19h19M8.5 23h15M10.5 27h11"/></svg></span>
+        <h3>Rifacimento tetti</h3>
+        <p>Manto, orditura, guaina e posa di tegole o coppi. Anche terrazzi e lastrici solari.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8v12a4 4 0 0 0 4 4h11"/><path d="M4 8h9l4 4"/><path d="M23 10v16M20 26h6"/><path d="M26 6.5c0 1.4-1.1 2.5-2.5 2.5S21 7.9 21 6.5 23.5 2 23.5 2 26 5.1 26 6.5Z"/></svg></span>
+        <h3>Lattoneria</h3>
+        <p>Gronde, pluviali, scossaline e converse in lamiera, rame o alluminio, piegate su misura.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 28V7h14v21"/><path d="M10 12h2M16 12h2M10 18h2M16 18h2"/><path d="M2 11h26M2 21h26"/><path d="M26 7v21"/></svg></span>
+        <h3>Facciate</h3>
+        <p>Intonaci, tinteggiature, cappotto termico e ripristino di frontalini e balconi.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c1.8-2 3.6-2 5.4 0s3.6 2 5.4 0 3.6-2 5.4 0 3.6 2 5.4 0"/><path d="M3 26c1.8-2 3.6-2 5.4 0s3.6 2 5.4 0 3.6-2 5.4 0 3.6 2 5.4 0"/><path d="M19 13 29 3"/><path d="M23 3h6v6"/></svg></span>
+        <h3>Bonifica amianto</h3>
+        <p>Coperture e canne fumarie in cemento-amianto, con smaltimento documentato.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h26v20H3z"/><path d="M3 12.5h26M3 19.5h26"/><path d="M11 6v6.5M20 12.5V19.5M11 19.5V26"/></svg></span>
+        <h3>Muratura</h3>
+        <p>Tramezze, nuove aperture, rinforzi e ripristini del calcestruzzo.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h24M4 27h24"/><path d="M16 5v22"/><path d="M8 9.5h16M8 22.5h16"/><path d="m8 9.5 16 13M24 9.5 8 22.5"/></svg></span>
+        <h3>Carpenteria</h3>
+        <p>Armature, casserature e getti per platee, travi e solette. Strutture in ferro.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h22v24H5z"/><path d="M12 4v24M19 4v24"/><circle cx="8.5" cy="9" r="1.1"/><circle cx="8.5" cy="23" r="1.1"/><circle cx="23.5" cy="9" r="1.1"/><circle cx="23.5" cy="23" r="1.1"/></svg></span>
+        <h3>Cartongesso</h3>
+        <p>Contropareti, controsoffitti, velette e nicchie, con isolamento integrato.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 30 12 16 20 2 12Z"/><path d="m9 16-7 4 14 8 14-8-7-4"/></svg></span>
+        <h3>Pavimenti</h3>
+        <p>Gres, pietra naturale, autobloccanti e battiscopa, su massetti preparati da noi.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19 13 9h14l-10 10Z"/><path d="m17 19 4 9M21 28h-6"/><path d="M8 24h12"/></svg></span>
+        <h3>Intonacatura</h3>
+        <p>Intonaci civili, deumidificanti e rasature a gesso, a mano o a macchina.</p>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 26h24"/><path d="M6 21h20l-3-6H9Z"/><path d="M16 15V4"/><path d="m13 9 3-3 3 3"/></svg></span>
+        <h3>Stuccatura</h3>
+        <p>Stuccature, riprese e rasature: la superficie arriva pronta per il tinteggiatore.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="band on-dark">
+    <div class="wrap" style="padding-block:clamp(40px,4.4vw,66px)">
+      <div class="shead">
+        <div>
+          <p class="eyebrow">Come lavoriamo</p>
+          <h2>Quattro passaggi,<br>sempre gli stessi.</h2>
+        </div>
+        <p class="lead">Il socio che viene a fare il sopralluogo è lo stesso che segue il cantiere fino alla consegna. Non passiamo la pratica a nessun altro.</p>
+      </div>
+      <ol class="proc">
+        <li>
+          <h3>Sopralluogo</h3>
+          <p>Veniamo a vedere il posto, misuriamo e capiamo cosa serve davvero. Gratuito e senza impegno.</p>
+        </li>
+        <li>
+          <h3>Preventivo</h3>
+          <p>Documento scritto con le lavorazioni voce per voce, materiali indicati e tempi stimati. Niente "a corpo" generico.</p>
+        </li>
+        <li>
+          <h3>Cantiere</h3>
+          <p>Squadra al lavoro con date concordate prima di iniziare, e un riferimento unico da chiamare per qualsiasi cosa.</p>
+        </li>
+        <li>
+          <h3>Consegna</h3>
+          <p>Pulizia finale, verifica insieme al cliente e consegna della documentazione dei lavori svolti.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+<!-- SCENE3D:START -->
+<style>
+.scene-wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.scene{
+  position:relative;width:100%;aspect-ratio:16/11;border:1px solid var(--line);border-radius:2px;
+  background:
+    radial-gradient(120% 90% at 50% 8%, color-mix(in srgb,var(--brand) 9%,transparent), transparent 62%),
+    var(--surface);
+  overflow:hidden;touch-action:pan-y;
+}
+.scene canvas{display:block;width:100%;height:100%;cursor:grab}
+.scene canvas:active{cursor:grabbing}
+.scene-ph{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .5s ease;color:var(--line)}
+.scene-ph svg{width:46%;max-width:240px;height:auto}
+.scene-ph[hidden]{display:none}
+.scene-hint{
+  position:absolute;left:12px;bottom:10px;font-family:var(--f-display);font-stretch:74%;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;font-size:.62rem;color:var(--muted);pointer-events:none;
+}
+.scene-fb{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted);font-size:.92rem}
+.labels{position:absolute;inset:0;pointer-events:none}
+.labels span{
+  position:absolute;transform:translate(0,-50%);white-space:nowrap;
+  font-family:var(--f-display);font-stretch:76%;font-weight:650;text-transform:uppercase;
+  letter-spacing:.11em;font-size:.6rem;color:var(--ink);
+  background:color-mix(in srgb,var(--surface) 86%,transparent);
+  border:1px solid var(--line);border-radius:99px;padding:4px 9px;
+}
+.scene-side{display:grid;gap:16px;align-content:start}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:2px;overflow:hidden}
+.seg button{
+  flex:1;border:0;background:transparent;color:var(--ink);cursor:pointer;padding:11px 8px;
+  font-family:var(--f-display);font-weight:650;font-stretch:88%;font-size:.86rem;
+  transition:background-color .16s ease,color .16s ease;
+}
+.seg button + button{border-left:1.5px solid var(--line)}
+.seg button:hover{background:var(--line-soft)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.layers{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.layers li{
+  display:grid;grid-template-columns:14px minmax(0,1fr);gap:11px;align-items:baseline;
+  padding:11px 6px;border-bottom:1px solid var(--line);cursor:default;transition:background-color .16s ease;
+}
+.layers li:hover{background:var(--line-soft)}
+.layers i{width:14px;height:14px;border-radius:2px;display:block;align-self:center}
+.layers b{font-family:var(--f-display);font-weight:700;font-stretch:96%;font-size:.94rem;display:block}
+.layers span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45}
+@media (max-width:860px){
+  .scene-wrap{grid-template-columns:minmax(0,1fr)}
+  .scene{aspect-ratio:4/3}
+}
+</style>
+
+<section class="wrap section" id="tetto" style="padding-top:0">
+  <div class="shead">
+    <div>
+      <p class="eyebrow">Il tetto in sezione</p>
+      <h2>Cosa c'è sotto<br>le tegole.</h2>
+    </div>
+    <p class="lead">Un tetto rifatto bene non è solo il manto che si vede da terra. Gira il modello con il dito o con il mouse, apri gli strati e confronta com'era prima dei lavori.</p>
+  </div>
+
+  <div class="scene-wrap">
+    <div class="scene" id="scene">
+      <canvas id="c3d"></canvas>
+      <div class="labels" id="labels"></div>
+      <div class="scene-ph" id="scene-ph">
+        <svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 66 100 20l80 46"/>
+          <path d="M34 60v62h132V60"/>
+          <path d="M34 122h132"/>
+          <path d="M86 122V92h28v30"/>
+        </svg>
+      </div>
+      <p class="scene-hint" id="scene-hint">Trascina per girare</p>
+      <p class="scene-fb" id="scene-fb" hidden>Il modello 3D non è disponibile su questo dispositivo. Gli strati del tetto sono elencati qui accanto.</p>
+    </div>
+
+    <div class="scene-side">
+      <div class="seg" role="group" aria-label="Stato del tetto">
+        <button type="button" data-state="prima" aria-pressed="false">Prima dei lavori</button>
+        <button type="button" data-state="dopo" aria-pressed="true">Dopo</button>
+      </div>
+      <div class="seg" role="group" aria-label="Vista del tetto">
+        <button type="button" data-ex="1" aria-pressed="false">Strati aperti</button>
+        <button type="button" data-ex="0" aria-pressed="true">Tetto chiuso</button>
+      </div>
+      <ol class="layers" id="layers">
+        <li data-l="manto"><i style="background:#B5502F"></i><span><b>Manto di copertura</b>Coppi o tegole, posati su listello</span></li>
+        <li data-l="listelli"><i style="background:#8A6B45"></i><span><b>Listelli e controlistelli</b>Creano la ventilazione sotto il manto</span></li>
+        <li data-l="guaina"><i style="background:#39404E"></i><span><b>Guaina traspirante</b>Ferma l'acqua, lascia uscire il vapore</span></li>
+        <li data-l="coibentazione"><i style="background:#E3BE62"></i><span><b>Coibentazione</b>Il pannello che tiene il caldo d'inverno</span></li>
+        <li data-l="orditura"><i style="background:#7A5636"></i><span><b>Orditura</b>Travi e travetti, verificati uno a uno</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var host = document.getElementById('scene');
+  if (!host) return;
+  var cv = document.getElementById('c3d');
+  var ph = document.getElementById('scene-ph');
+  var fb = document.getElementById('scene-fb');
+  var labelBox = document.getElementById('labels');
+  var hint = document.getElementById('scene-hint');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var LAYERS = [
+    { k: 'manto',         th: 0.11, base: 0.46, spread: 1.00, dopo: 0xC05A33, prima: 0x7E6656, opt: false },
+    { k: 'listelli',      th: 0.07, base: 0.36, spread: 0.78, dopo: 0x8A6B45, prima: 0x8A6B45, opt: true },
+    { k: 'guaina',        th: 0.04, base: 0.29, spread: 0.56, dopo: 0x39404E, prima: 0x39404E, opt: true },
+    { k: 'coibentazione', th: 0.13, base: 0.20, spread: 0.34, dopo: 0xE3BE62, prima: 0xE3BE62, opt: true },
+    { k: 'orditura',      th: 0.17, base: 0.05, spread: 0.12, dopo: 0x7A5636, prima: 0x4C3723, opt: false }
+  ];
+
+  var tEx = 0, ex = 0, tPr = 0, pr = 0, az = -0.62, el = 0.30, drag = false, running = false, ready = false, first = true;
+  var THREEJS = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
+
+  function hasWebGL() {
+    try {
+      var c = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+    } catch (e) { return false; }
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      running = e.isIntersecting;
+      if (e.isIntersecting && !ready) { ready = true; boot(); }
+    });
+  }, { rootMargin: '250px 0px' });
+  io.observe(host);
+
+  function boot() {
+    if (!hasWebGL()) { fail(); return; }
+    var s = document.createElement('script');
+    s.src = THREEJS;
+    s.onload = build;
+    s.onerror = fail;
+    document.head.appendChild(s);
+  }
+  function fail() {
+    cv.hidden = true; ph.hidden = true; hint.hidden = true; fb.hidden = false;
+  }
+
+  function build() {
+    if (!window.THREE) { fail(); return; }
+    var T = window.THREE;
+
+    var renderer = new T.WebGLRenderer({ canvas: cv, alpha: true, antialias: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+
+    var scene = new T.Scene();
+    var camera = new T.PerspectiveCamera(36, 16 / 11, 0.5, 90);
+    var target = new T.Vector3(0, 2.0, 0);
+
+    scene.add(new T.HemisphereLight(0xffffff, 0x8b8272, 0.95));
+    var sun = new T.DirectionalLight(0xffffff, 1.05);
+    sun.position.set(6, 9, 5);
+    scene.add(sun);
+    var rim = new T.DirectionalLight(0xffd9a0, 0.3);
+    rim.position.set(-7, 4, -5);
+    scene.add(rim);
+
+    // piano di cantiere: griglia tecnica
+    var grid = new T.GridHelper(20, 20, 0xDD9933, 0xDD9933);
+    grid.material.transparent = true;
+    grid.material.opacity = 0.16;
+    grid.position.y = -0.02;
+    scene.add(grid);
+
+    function mat(hex, extra) {
+      var o = { color: hex };
+      if (extra) for (var k in extra) o[k] = extra[k];
+      return new T.MeshLambertMaterial(o);
+    }
+    function box(w, h, d, m) { return new T.Mesh(new T.BoxGeometry(w, h, d), m); }
+
+    function tileTex() {
+      var c = document.createElement('canvas'); c.width = 64; c.height = 64;
+      var g = c.getContext('2d');
+      g.fillStyle = '#ffffff'; g.fillRect(0, 0, 64, 64);
+      g.fillStyle = 'rgba(0,0,0,0.17)';
+      for (var i = 0; i < 64; i += 16) g.fillRect(0, i, 64, 3);
+      g.fillStyle = 'rgba(0,0,0,0.07)';
+      for (var j = 0; j < 64; j += 16) g.fillRect(j, 0, 2, 64);
+      var t = new T.CanvasTexture(c);
+      t.wrapS = t.wrapT = T.RepeatWrapping;
+      t.repeat.set(9, 4);
+      return t;
+    }
+
+    // ---- casa ----
+    var W = 4.4, D = 3.0, H = 2.2, RISE = 1.2, EAVE = 1.72;
+    var ang = Math.atan2(RISE, EAVE);
+    var slopeLen = Math.sqrt(EAVE * EAVE + RISE * RISE);
+    var house = new T.Group();
+    scene.add(house);
+
+    var wallMat = mat(0xE4DCCC);
+    var walls = box(4.0, H, D, wallMat);
+    walls.position.y = H / 2;
+    house.add(walls);
+
+    var plinth = box(4.25, 0.32, D + 0.25, mat(0xA9A192));
+    plinth.position.y = 0.16;
+    house.add(plinth);
+
+    // timpani
+    var sh = new T.Shape();
+    sh.moveTo(-D / 2, 0); sh.lineTo(D / 2, 0); sh.lineTo(0, RISE); sh.lineTo(-D / 2, 0);
+    var gab = new T.ExtrudeGeometry(sh, { depth: 0.18, bevelEnabled: false });
+    [-2.0, 1.82].forEach(function (x) {
+      var g = new T.Mesh(gab, wallMat);
+      g.rotation.y = Math.PI / 2;
+      g.position.set(x, H, 0);
+      house.add(g);
+    });
+
+    // aperture
+    var glass = mat(0x3C4450);
+    [[-1.15, 1.45], [1.15, 1.45]].forEach(function (p) {
+      var w = box(0.78, 0.92, 0.08, glass);
+      w.position.set(p[0], p[1], D / 2 + 0.01);
+      house.add(w);
+    });
+    var door = box(0.72, 1.5, 0.08, mat(0x6B4B32));
+    door.position.set(0, 0.9, D / 2 + 0.01);
+    house.add(door);
+
+    // ---- strati del tetto ----
+    var roof = new T.Group();
+    house.add(roof);
+    var texture = tileTex();
+
+    LAYERS.forEach(function (L) {
+      L.meshes = [];
+      L.mDopo = new T.Color(L.dopo);
+      L.mPrima = new T.Color(L.prima);
+      [1, -1].forEach(function (sgn) {
+        var m = new T.MeshLambertMaterial({ color: L.dopo, transparent: L.opt, opacity: 1 });
+        if (L.k === 'manto') m.map = texture;
+        var mesh = box(W, L.th, slopeLen, m);
+        mesh.rotation.x = sgn * ang;
+        mesh.userData.sgn = sgn;
+        mesh.userData.nx = 0;
+        mesh.userData.ny = Math.cos(ang);
+        mesh.userData.nz = sgn * Math.sin(ang);
+        L.meshes.push(mesh);
+        roof.add(mesh);
+      });
+    });
+
+    var ridge = box(W * 0.99, 0.16, 0.3, new T.MeshLambertMaterial({ color: 0xC05A33, map: texture }));
+    ridge.position.set(0, H + RISE + 0.5, 0);
+    roof.add(ridge);
+
+    // tegole mancanti (stato "prima")
+    var holes = [];
+    [[-1.3, 0.35], [0.5, -0.5], [1.5, 0.7], [-0.2, 0.9]].forEach(function (p) {
+      var h = new T.Mesh(new T.BoxGeometry(0.5, 0.05, 0.42), new T.MeshLambertMaterial({ color: 0x2A241C, transparent: true, opacity: 0 }));
+      h.userData.u = p[0]; h.userData.v = p[1];
+      holes.push(h);
+      roof.add(h);
+    });
+
+    // ---- gru ----
+    function crane(scale, dir) {
+      var g = new T.Group();
+      var steel = mat(0xDD9933);
+      var dark = mat(0x2A2620);
+      var mast = box(0.16, 5.2, 0.16, steel);
+      mast.position.y = 2.6;
+      g.add(mast);
+      [1.4, 2.6, 3.8].forEach(function (y) {
+        var c = box(0.34, 0.05, 0.05, dark);
+        c.position.y = y; c.rotation.z = 0.5; g.add(c);
+      });
+      var base = box(0.8, 0.16, 0.8, dark);
+      base.position.y = 0.08; g.add(base);
+
+      var slew = new T.Group();
+      slew.position.y = 5.2;
+      g.add(slew);
+      var jib = box(4.6, 0.13, 0.13, steel);
+      jib.position.x = 2.1; slew.add(jib);
+      var cjib = box(1.8, 0.13, 0.13, steel);
+      cjib.position.x = -0.95; slew.add(cjib);
+      var cw = box(0.5, 0.42, 0.46, dark);
+      cw.position.set(-1.6, -0.08, 0); slew.add(cw);
+      var cab = box(0.36, 0.34, 0.36, dark);
+      cab.position.set(0.1, -0.24, 0); slew.add(cab);
+      var tower = box(0.1, 0.9, 0.1, steel);
+      tower.position.y = 0.5; slew.add(tower);
+      var tie1 = box(2.2, 0.04, 0.04, steel);
+      tie1.position.set(1.1, 0.62, 0); tie1.rotation.z = -0.24; slew.add(tie1);
+      var tie2 = box(1.1, 0.04, 0.04, steel);
+      tie2.position.set(-0.55, 0.62, 0); tie2.rotation.z = 0.5; slew.add(tie2);
+
+      var line = box(0.03, 2.0, 0.03, dark);
+      line.position.set(3.4, -1.0, 0); slew.add(line);
+      var hook = box(0.3, 0.26, 0.3, dark);
+      hook.position.set(3.4, -2.1, 0); slew.add(hook);
+
+      g.scale.setScalar(scale);
+      g.userData.slew = slew;
+      g.userData.line = line;
+      g.userData.hook = hook;
+      g.userData.dir = dir;
+      return g;
+    }
+
+    var craneA = crane(0.62, 1);
+    craneA.position.set(-4.3, 0, -3.3);
+    scene.add(craneA);
+    var craneB = crane(0.44, -1);
+    craneB.position.set(4.1, 0, -5.0);
+    craneB.userData.slew.rotation.y = 2.1;
+    scene.add(craneB);
+
+    // ---- etichette ----
+    var tags = LAYERS.map(function (L) {
+      var s = document.createElement('span');
+      s.textContent = L.k.charAt(0).toUpperCase() + L.k.slice(1);
+      s.style.opacity = '0';
+      labelBox.appendChild(s);
+      return s;
+    });
+    var v = new T.Vector3();
+
+    // ---- interazione ----
+    var px = 0, py = 0;
+    host.addEventListener('pointerdown', function (e) {
+      drag = true; px = e.clientX; py = e.clientY;
+      if (cv.setPointerCapture) { try { cv.setPointerCapture(e.pointerId); } catch (err) {} }
+      if (hint) hint.hidden = true;
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      az -= (e.clientX - px) * 0.007;
+      el = Math.max(0.06, Math.min(0.72, el + (e.clientY - py) * 0.004));
+      px = e.clientX; py = e.clientY;
+    });
+    window.addEventListener('pointerup', function () { drag = false; });
+
+    function press(group, attr, val) {
+      group.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset[attr] === val)); });
+    }
+    var stateBtns = [].slice.call(document.querySelectorAll('[data-state]'));
+    var exBtns = [].slice.call(document.querySelectorAll('[data-ex]'));
+    stateBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        tPr = b.dataset.state === 'prima' ? 1 : 0;
+        press(stateBtns, 'state', b.dataset.state);
+        if (tPr === 1) { tEx = 0; press(exBtns, 'ex', '0'); }
+      });
+    });
+    exBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        tEx = b.dataset.ex === '1' ? 1 : 0;
+        press(exBtns, 'ex', b.dataset.ex);
+        if (tEx === 1) { tPr = 0; press(stateBtns, 'state', 'dopo'); }
+      });
+    });
+    document.querySelectorAll('#layers li').forEach(function (li) {
+      var set = function (on) {
+        LAYERS.forEach(function (L) {
+          if (L.k !== li.dataset.l) return;
+          L.meshes.forEach(function (m) { m.material.emissive.setHex(on ? 0x553a10 : 0x000000); });
+        });
+      };
+      li.addEventListener('mouseenter', function () { set(true); });
+      li.addEventListener('mouseleave', function () { set(false); });
+    });
+
+    // ---- resize ----
+    function resize() {
+      var w = host.clientWidth, h = host.clientHeight;
+      if (!w || !h) return;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(host);
+    else window.addEventListener('resize', resize);
+    resize();
+
+    ph.style.opacity = '0';
+    setTimeout(function () { ph.hidden = true; }, 520);
+
+    if (!reduce) {
+      setTimeout(function () {
+        if (tEx === 0 && tPr === 0) { tEx = 1; press(exBtns, 'ex', '1'); }
+      }, 900);
+    }
+
+    var col = new T.Color();
+    var C_RIDGE_A = new T.Color(0xC05A33), C_RIDGE_B = new T.Color(0x7E6656);
+    var C_WALL_A = new T.Color(0xE4DCCC), C_WALL_B = new T.Color(0xBFB3A0);
+    var clock = 0;
+
+    function frame() {
+      requestAnimationFrame(frame);
+      if (!running || document.hidden) return;
+      clock += 0.016;
+
+      var k = reduce ? 1 : 0.085;
+      ex += (tEx - ex) * k;
+      pr += (tPr - pr) * k;
+      if (!drag && !reduce) az += 0.0013;
+
+      var r = 13.8;
+      camera.position.set(
+        target.x + r * Math.cos(el) * Math.sin(az),
+        target.y + r * Math.sin(el) + 1.2,
+        target.z + r * Math.cos(el) * Math.cos(az)
+      );
+      camera.lookAt(target);
+
+      LAYERS.forEach(function (L, i) {
+        var d = L.base + ex * L.spread * 2.2;
+        L.meshes.forEach(function (m) {
+          m.position.set(0, H + RISE / 2 + m.userData.ny * d, m.userData.sgn * (EAVE / 2) + m.userData.nz * d);
+          col.copy(L.mDopo).lerp(L.mPrima, pr);
+          m.material.color.copy(col);
+          if (L.opt) {
+            m.material.opacity = 1 - pr;
+            m.visible = m.material.opacity > 0.03;
+          }
+        });
+        var m0 = L.meshes[0];
+        if (m0.visible) {
+          v.set(W * 0.5 + 0.7, 0, 0);
+          m0.localToWorld(v);
+          v.project(camera);
+          var t = tags[i];
+          t.style.left = ((v.x * 0.5 + 0.5) * 100) + '%';
+          t.style.top = ((-v.y * 0.5 + 0.5) * 100) + '%';
+          t.style.opacity = String(Math.max(0, (ex - 0.35) * 1.6) * (1 - pr));
+        } else {
+          tags[i].style.opacity = '0';
+        }
+      });
+
+      ridge.position.y = H + RISE + 0.5 + ex * 2.35;
+      ridge.material.color.copy(col.copy(C_RIDGE_A).lerp(C_RIDGE_B, pr));
+
+      holes.forEach(function (h, i) {
+        var L = LAYERS[0];
+        var m0 = L.meshes[h.userData.v > 0 ? 0 : 1];
+        h.position.copy(m0.position);
+        h.rotation.copy(m0.rotation);
+        h.translateX(h.userData.u);
+        h.translateZ(h.userData.v);
+        h.translateY(0.06);
+        h.material.opacity = pr * (1 - ex) * 0.95;
+        h.visible = h.material.opacity > 0.03;
+      });
+
+      wallMat.color.copy(col.copy(C_WALL_A).lerp(C_WALL_B, pr));
+
+      if (!reduce) {
+        craneA.userData.slew.rotation.y += 0.0026;
+        craneB.userData.slew.rotation.y -= 0.0019;
+        var bob = Math.sin(clock * 0.9) * 0.35;
+        craneA.userData.hook.position.y = -2.1 + bob;
+        craneA.userData.line.position.y = -1.0 + bob / 2;
+        craneA.userData.line.scale.y = 1 - bob / 2.2;
+      }
+
+      renderer.render(scene, camera);
+    }
+    frame();
+  }
+})();
+</script>
+<!-- SCENE3D:END -->
+
+  <!-- LAVORI -->
+  <section class="wrap section" id="lavori">
+    <div class="shead">
+      <div>
+        <p class="eyebrow">Lavori</p>
+        <h2>Foto dei nostri cantieri.</h2>
+      </div>
+      <p class="lead">Non rendering, non foto d'archivio: sono cantieri nostri, fotografati durante e a fine lavori.</p>
+    </div>
+
+    <div class="lavori-bar">
+      <div class="filters" role="group" aria-label="Filtra i lavori per categoria">
+        <button class="chip" data-f="tutti" aria-pressed="true">Tutti</button>
+        <button class="chip" data-f="tetti" aria-pressed="false">Tetti e lattoneria</button>
+        <button class="chip" data-f="facciate" aria-pressed="false">Facciate</button>
+        <button class="chip" data-f="opere" aria-pressed="false">Opere edili</button>
+      </div>
+      <div class="rail-nav">
+        <button type="button" id="rail-p" aria-label="Scorri le foto indietro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+        <button type="button" id="rail-n" aria-label="Scorri le foto avanti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <div class="rail" id="rail">
+      <figure class="shot" data-c="facciate" data-src="img/facciata-ponteggio.webp" tabindex="0" role="button" aria-label="Ingrandisci: ponteggio su facciata di palazzina">
+        <img src="img/facciata-ponteggio.webp" alt="Ponteggio montato sulla facciata di una palazzina" loading="lazy" width="728" height="975">
+        <figcaption>Ponteggio su facciata di palazzina</figcaption>
+      </figure>
+      <figure class="shot" data-c="tetti" data-src="img/tetto-tegole.webp" tabindex="0" role="button" aria-label="Ingrandisci: manto di copertura in tegole">
+        <img src="img/tetto-tegole.webp" alt="Tetto con manto di copertura in tegole appena posato" loading="lazy" width="728" height="975">
+        <figcaption>Manto di copertura in tegole</figcaption>
+      </figure>
+      <figure class="shot" data-c="tetti" data-src="img/lattoneria-scossalina.webp" tabindex="0" role="button" aria-label="Ingrandisci: scossalina in lamiera su muretto di copertura">
+        <img src="img/lattoneria-scossalina.webp" alt="Scossalina in lamiera posata sul muretto di una copertura" loading="lazy" width="728" height="975">
+        <figcaption>Scossalina in lamiera su muretto</figcaption>
+      </figure>
+      <figure class="shot" data-c="tetti" data-src="img/gronda-tetto.webp" tabindex="0" role="button" aria-label="Ingrandisci: canale di gronda e linea di falda">
+        <img src="img/gronda-tetto.webp" alt="Canale di gronda in lamiera lungo la linea di falda di un tetto in coppi" loading="lazy" width="728" height="975">
+        <figcaption>Canale di gronda e linea di falda</figcaption>
+      </figure>
+      <figure class="shot" data-c="facciate" data-src="img/facciata-condominio.webp" tabindex="0" role="button" aria-label="Ingrandisci: facciata condominiale a fine lavori">
+        <img src="img/facciata-condominio.webp" alt="Facciata di un condominio dopo il rifacimento dell'intonaco e la tinteggiatura" loading="lazy" width="728" height="975">
+        <figcaption>Facciata condominiale a fine lavori</figcaption>
+      </figure>
+      <figure class="shot" data-c="opere" data-src="img/carpenteria-ferro.webp" tabindex="0" role="button" aria-label="Ingrandisci: armatura in ferro per platea in cemento armato">
+        <img src="img/carpenteria-ferro.webp" alt="Operai al lavoro sull'armatura in ferro di una platea in cemento armato" loading="lazy" width="728" height="975">
+        <figcaption>Armatura per platea in c.a.</figcaption>
+      </figure>
+      <figure class="shot" data-c="opere" data-src="img/pavimento-pietra.webp" tabindex="0" role="button" aria-label="Ingrandisci: pavimentazione esterna in pietra">
+        <img src="img/pavimento-pietra.webp" alt="Pavimentazione esterna in lastre di pietra posata su un terrazzo" loading="lazy" width="728" height="975">
+        <figcaption>Pavimentazione esterna in pietra</figcaption>
+      </figure>
+      <figure class="shot" data-c="tetti" data-src="img/impermeabilizzazione.webp" tabindex="0" role="button" aria-label="Ingrandisci: impermeabilizzazione di un terrazzo">
+        <img src="img/impermeabilizzazione.webp" alt="Guaina di impermeabilizzazione stesa sulla superficie di un terrazzo" loading="lazy" width="728" height="975">
+        <figcaption>Impermeabilizzazione di terrazzo</figcaption>
+      </figure>
+    </div>
+
+    <p class="hint" id="empty" hidden style="margin-top:18px">Nessun lavoro in questa categoria.</p>
+
+    <div style="margin-top:clamp(28px,4vw,44px)">
+      <a class="video-card" href="https://youtu.be/KJu2mDW_ChU" target="_blank" rel="noopener">
+        <div>
+          <p class="eyebrow" style="color:var(--brand)">Video</p>
+          <h3>Guardaci su YouTube</h3>
+          <p>Un giro in cantiere: le squadre al lavoro, i materiali e le lavorazioni che trovi qui sopra.</p>
+        </div>
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19.5 12 8 5.2Z"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="truss" aria-hidden="true"></div></div>
+
+  <!-- AZIENDA -->
+  <section class="wrap section" id="azienda">
+    <div class="shead">
+      <div>
+        <p class="eyebrow">Chi siamo</p>
+        <h2>Quattro soci,<br>una sola squadra.</h2>
+      </div>
+      <div>
+        <p class="lead" style="margin-bottom:14px">Immobiliare 4S nasce dall'unione di quattro persone che nel settore edile ci sono cresciute: più di trent'anni di cantieri a testa, ognuna con la propria specializzazione.</p>
+        <p style="color:var(--muted);font-size:.95rem">Abbiamo scelto di restare un'impresa a misura d'uomo: chi risponde al telefono è uno dei soci, il sopralluogo lo fa chi poi seguirà il lavoro, e se qualcosa non va si sistema subito. Lavoriamo per privati, condomini e imprese fra Cinisello Balsamo, Sesto San Giovanni, Monza, Milano e i comuni vicini.</p>
+      </div>
+    </div>
+
+    <ul class="soci">
+      <li>
+        <span class="ini" aria-hidden="true">M</span>
+        <div><h3>Massimo</h3><p class="role">Socio fondatore</p></div>
+        <a href="tel:+393287834263"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>328 783 4263</a>
+      </li>
+      <li>
+        <span class="ini" aria-hidden="true">VM</span>
+        <div><h3>Vincenzo Milano</h3><p class="role">Socio fondatore</p></div>
+        <a href="tel:+393336939055"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>333 693 9055</a>
+      </li>
+      <li>
+        <span class="ini" aria-hidden="true">EM</span>
+        <div><h3>Emanuele Mangione</h3><p class="role">Socio fondatore</p></div>
+        <a href="tel:+393272955240"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>327 295 5240</a>
+      </li>
+      <li>
+        <span class="ini" aria-hidden="true">CL</span>
+        <div><h3>Carmelo Lanzafame</h3><p class="role">Socio fondatore</p></div>
+        <a href="tel:+393886955513"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>388 695 5513</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap section" id="domande" style="padding-top:0">
+    <div class="shead">
+      <div>
+        <p class="eyebrow">Domande frequenti</p>
+        <h2>Le cose che<br>ci chiedono sempre.</h2>
+      </div>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Il sopralluogo e il preventivo sono gratuiti?</summary>
+        <p>Sì. Veniamo a vedere il lavoro senza costi e senza impegno, e il preventivo che consegniamo è scritto, dettagliato e valido per il periodo indicato sul documento.</p>
+      </details>
+      <details>
+        <summary>In quali zone lavorate?</summary>
+        <p>Abbiamo sede a Cinisello Balsamo e lavoriamo soprattutto fra Sesto San Giovanni, Monza, Milano e i comuni della cintura nord. Per cantieri più lontani ne parliamo al telefono.</p>
+      </details>
+      <details>
+        <summary>Quanto tempo serve per avere il preventivo?</summary>
+        <p>Di norma pochi giorni dal sopralluogo. Per lavori grandi, dove servono rilievi o computi più lunghi, lo diciamo subito quando fissiamo l'appuntamento.</p>
+      </details>
+      <details>
+        <summary>Lavorate anche con i condomini?</summary>
+        <p>Sì, è una parte importante del nostro lavoro: facciate, tetti, lattoneria e impermeabilizzazioni. Ci rapportiamo con l'amministratore e, quando serve, partecipiamo all'assemblea per spiegare il preventivo.</p>
+      </details>
+      <details>
+        <summary>Come funziona la rimozione dell'amianto?</summary>
+        <p>Segue un percorso preciso: sopralluogo, piano di lavoro da presentare all'ente competente, rimozione in sicurezza del materiale e conferimento in discarica autorizzata. Al termine consegniamo la documentazione dello smaltimento.</p>
+      </details>
+      <details>
+        <summary>Chi segue il cantiere una volta iniziato?</summary>
+        <p>Uno dei quattro soci. È il riferimento unico per tutta la durata dei lavori: risponde al telefono, coordina la squadra e verifica insieme al cliente ogni fase.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="wrap section" id="contatti" style="padding-top:0">
+    <div class="shead">
+      <div>
+        <p class="eyebrow">Contatti</p>
+        <h2>Parliamo del<br>tuo lavoro.</h2>
+      </div>
+      <p class="lead">Compila i campi e prepariamo il messaggio da mandarci su WhatsApp o via email. Se preferisci, chiama direttamente: rispondiamo noi.</p>
+    </div>
+
+    <div class="contact">
+      <div>
+        <form id="form" novalidate>
+          <div class="f2">
+            <label><span>Nome e cognome</span><input id="f-nome" name="nome" type="text" autocomplete="name" required></label>
+            <label><span>Telefono</span><input id="f-tel" name="tel" type="tel" autocomplete="tel" required></label>
+          </div>
+          <div class="f2">
+            <label><span>Email (facoltativa)</span><input id="f-mail" name="mail" type="email" autocomplete="email"></label>
+            <label><span>Comune del cantiere</span><input id="f-comune" name="comune" type="text" autocomplete="address-level2"></label>
+          </div>
+          <label><span>Tipo di intervento</span>
+            <select id="f-tipo" name="tipo">
+              <option>Rifacimento tetto</option>
+              <option>Lattoneria (gronde, pluviali, scossaline)</option>
+              <option>Facciata</option>
+              <option>Bonifica amianto</option>
+              <option>Muratura</option>
+              <option>Carpenteria</option>
+              <option>Cartongesso</option>
+              <option>Pavimenti</option>
+              <option>Intonacatura</option>
+              <option>Stuccatura</option>
+              <option>Ristrutturazione completa</option>
+              <option>Altro / non so ancora</option>
+            </select>
+          </label>
+          <label><span>Cosa serve</span><textarea id="f-msg" name="msg" placeholder="Due righe bastano: tipo di edificio, superficie indicativa, quando vorresti partire."></textarea></label>
+          <button class="btn btn-primary" type="submit" style="justify-self:start">Prepara la richiesta</button>
+          <p class="hint">Non salviamo niente su questo sito: il pulsante prepara il testo e lo apre in WhatsApp o nel programma di posta, dove decidi tu se inviarlo.</p>
+        </form>
+
+        <div class="sent" id="sent" hidden>
+          <h3>Richiesta pronta</h3>
+          <pre id="sent-txt"></pre>
+          <div class="row">
+            <a class="btn btn-primary" id="go-wa" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12.7 12.7 0 0 1-5.6-4.5c-.4-.6-.9-1.5-.9-2.4 0-.9.5-1.4.7-1.6.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.7 1.7c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.2.3.7 1.1 1.4 1.8.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.6-.7c.2-.2.3-.2.5-.1l1.7.8c.2.1.4.2.4.3.1.2.1.6 0 .9Z"/></svg>
+              Manda su WhatsApp
+            </a>
+            <a class="btn btn-ghost" id="go-mail" href="#">Manda via email</a>
+            <button class="btn btn-ghost" type="button" id="go-copy">Copia il testo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-row">
+            <div>
+              <p class="k">Telefono ufficio</p>
+              <p class="v"><a href="tel:+390267177263">02 6717 7263</a></p>
+            </div>
+            <button class="copy" type="button" data-copy="02 67177263">Copia</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-row">
+            <div>
+              <p class="k">WhatsApp</p>
+              <p class="v"><a href="https://wa.me/393287834263" target="_blank" rel="noopener">+39 328 783 4263</a></p>
+            </div>
+            <button class="copy" type="button" data-copy="+39 328 783 4263">Copia</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-row">
+            <div>
+              <p class="k">Email</p>
+              <p class="v"><a href="mailto:immobiliare4soci@gmail.com">immobiliare4soci@gmail.com</a></p>
+            </div>
+            <button class="copy" type="button" data-copy="immobiliare4soci@gmail.com">Copia</button>
+          </div>
+        </div>
+        <div class="card">
+          <p class="k">Sede</p>
+          <p class="v">Via Daniele Manin 48<br>20092 Cinisello Balsamo (MI)</p>
+          <p style="margin-top:14px">
+            <a class="btn btn-ghost" style="padding:10px 16px;font-size:.86rem" href="https://www.google.com/maps/search/?api=1&amp;query=Via+Daniele+Manin+48+Cinisello+Balsamo" target="_blank" rel="noopener">Apri in Google Maps</a>
+          </p>
+        </div>
+        <div class="card">
+          <p class="k">Orari</p>
+          <p class="v">Lunedì – Venerdì<br>8:00 – 20:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <span class="logo-mark" aria-hidden="true"></span>
+        <p><strong style="color:var(--on-ink)">Immobiliare 4S Srl</strong><br>
+        Via Daniele Manin 48<br>20092 Cinisello Balsamo (MI)<br>
+        P.IVA <span style="font-variant-numeric:tabular-nums">12749360967</span></p>
+      </div>
+      <div>
+        <h4>Sito</h4>
+        <ul>
+          <li><a href="#servizi">Servizi</a></li>
+          <li><a href="#lavori">Lavori</a></li>
+          <li><a href="#azienda">Chi siamo</a></li>
+          <li><a href="#domande">Domande frequenti</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contatti</h4>
+        <ul>
+          <li><a href="tel:+390267177263">02 6717 7263</a></li>
+          <li><a href="https://wa.me/393287834263" target="_blank" rel="noopener">WhatsApp 328 783 4263</a></li>
+          <li><a href="mailto:immobiliare4soci@gmail.com">immobiliare4soci@gmail.com</a></li>
+          <li><a href="https://youtu.be/KJu2mDW_ChU" target="_blank" rel="noopener">Canale YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <span>© <span id="yy">2026</span> Immobiliare 4S Srl — Tutti i diritti riservati</span>
+      <span>Impresa edile a Cinisello Balsamo (MI)</span>
+    </div>
+  </div>
+</footer>
+
+<div class="dock">
+  <a class="btn btn-primary" href="tel:+390267177263">Chiama</a>
+  <a class="btn btn-ghost" href="https://wa.me/393287834263" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto del cantiere">
+  <button class="x" id="lb-x" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="p" id="lb-p" aria-label="Foto precedente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button class="n" id="lb-n" aria-label="Foto successiva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+  <figure style="margin:0">
+    <img id="lb-img" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+</div>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  // year
+  var yy = $('#yy'); if (yy) yy.textContent = new Date().getFullYear();
+
+  // sticky header border
+  var hdr = $('#hdr');
+  var onScroll = function () { hdr.classList.toggle('is-stuck', window.scrollY > 8); };
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  // mobile nav
+  var burger = $('#burger'), mnav = $('#mnav');
+  burger.addEventListener('click', function () {
+    var open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    burger.setAttribute('aria-label', open ? 'Apri il menu' : 'Chiudi il menu');
+    mnav.hidden = open;
+  });
+  $$('#mnav a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mnav.hidden = true;
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // gallery filter
+  var shots = $$('.shot'), empty = $('#empty'), rail = $('#rail');
+  $$('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      $$('.chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      var f = chip.dataset.f, n = 0;
+      shots.forEach(function (s) {
+        var on = (f === 'tutti' || s.dataset.c === f);
+        s.hidden = !on; if (on) n++;
+      });
+      empty.hidden = n > 0;
+      rail.scrollLeft = 0;
+      railSync();
+    });
+  });
+
+  // horizontal rail
+  var railP = $('#rail-p'), railN = $('#rail-n');
+  var railStep = function () {
+    var card = $('.shot:not([hidden])', rail);
+    return card ? (card.offsetWidth + 14) * 2 : 560;
+  };
+  function railSync() {
+    var max = rail.scrollWidth - rail.clientWidth - 2;
+    railP.disabled = rail.scrollLeft <= 2;
+    railN.disabled = max <= 0 || rail.scrollLeft >= max;
+  }
+  railP.addEventListener('click', function () { rail.scrollBy({ left: -railStep(), behavior: 'smooth' }); });
+  railN.addEventListener('click', function () { rail.scrollBy({ left: railStep(), behavior: 'smooth' }); });
+  rail.addEventListener('scroll', railSync, { passive: true });
+  window.addEventListener('resize', railSync);
+  railSync();
+
+  // lightbox
+  var lb = $('#lb'), lbImg = $('#lb-img'), lbCap = $('#lb-cap'), idx = 0, opener = null;
+  var visible = function () { return shots.filter(function (s) { return !s.hidden; }); };
+  var show = function (i) {
+    var list = visible(); if (!list.length) return;
+    idx = (i + list.length) % list.length;
+    var s = list[idx];
+    lbImg.src = s.dataset.src;
+    lbImg.alt = $('img', s).alt;
+    lbCap.textContent = $('figcaption', s).textContent;
+  };
+  var open = function (s) {
+    opener = s;
+    show(visible().indexOf(s));
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('#lb-x').focus();
+  };
+  var close = function () {
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    if (opener) opener.focus();
+  };
+  shots.forEach(function (s) {
+    s.addEventListener('click', function () { open(s); });
+    s.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(s); }
+    });
+  });
+  $('#lb-x').addEventListener('click', close);
+  $('#lb-p').addEventListener('click', function () { show(idx - 1); });
+  $('#lb-n').addEventListener('click', function () { show(idx + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+
+  // copy buttons
+  var flash = function (btn, txt) {
+    var old = btn.textContent;
+    btn.textContent = txt;
+    setTimeout(function () { btn.textContent = old; }, 1600);
+  };
+  var copy = function (text, btn, ok) {
+    var done = function () { flash(btn, ok); };
+    try {
+      navigator.clipboard.writeText(text).then(done, function () { flash(btn, 'Selezionalo a mano'); });
+    } catch (err) { flash(btn, 'Selezionalo a mano'); }
+  };
+  $$('.copy').forEach(function (b) {
+    b.addEventListener('click', function () { copy(b.dataset.copy, b, 'Copiato'); });
+  });
+
+  // form -> message
+  var form = $('#form'), sent = $('#sent'), sentTxt = $('#sent-txt');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = function (id) { return ($(id).value || '').trim(); };
+    var nome = v('#f-nome'), tel = v('#f-tel');
+    if (!nome || !tel) {
+      $(!nome ? '#f-nome' : '#f-tel').focus();
+      return;
+    }
+    var lines = [
+      'Richiesta di preventivo — Immobiliare 4S',
+      '',
+      'Nome: ' + nome,
+      'Telefono: ' + tel
+    ];
+    if (v('#f-mail')) lines.push('Email: ' + v('#f-mail'));
+    if (v('#f-comune')) lines.push('Comune: ' + v('#f-comune'));
+    lines.push('Intervento: ' + $('#f-tipo').value);
+    if (v('#f-msg')) lines.push('', v('#f-msg'));
+    var text = lines.join('\n');
+
+    sentTxt.textContent = text;
+    $('#go-wa').href = 'https://wa.me/393287834263?text=' + encodeURIComponent(text);
+    $('#go-mail').href = 'mailto:immobiliare4soci@gmail.com'
+      + '?subject=' + encodeURIComponent('Richiesta di preventivo — ' + nome)
+      + '&body=' + encodeURIComponent(text);
+    sent.hidden = false;
+    sent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  $('#go-copy').addEventListener('click', function () {
+    copy(sentTxt.textContent, $('#go-copy'), 'Copiato');
+  });
+})();
+</script>

@@ -201,3 +201,7 @@ select { width: 100%; font: inherit; color: var(--ink); background: var(--white)
 .check { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0; }
 .check input { width: auto; margin-top: 6px; }
 .check label { margin: 0; font-weight: 400; }
+
+.btn-outline { border-color: var(--green); color: var(--green-dark); background: transparent; }
+.btn-outline:hover { background: var(--green); color: #fff; }
+@media (prefers-color-scheme: dark) { .btn-outline { color: #5fd195; border-color: #5fd195; } }

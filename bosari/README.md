@@ -59,6 +59,14 @@ di farlo va sostituito tutto quanto segue.
 - `sitemap.xml`, `robots.txt` (blocca tutto finché `PREVIEW = True`), pagina `404.html`, immagine per le anteprime social (`social.jpg`).
 - Controllato in browser: nessun errore JavaScript, nessun file mancante, nessun scorrimento orizzontale a 390 px.
 
+## Schede tecniche e catalogo in PDF
+
+`python3 make_datasheets.py` genera in `site/download/` una scheda tecnica per ogni prodotto
+(`bosari-<prodotto>-it|en.pdf`) e il catalogo completo (`bosari-catalogo-it.pdf`, `bosari-catalogue-en.pdf`),
+a partire dagli stessi dati del sito (`products.py`), poi rigenera il sito: i pulsanti di download
+compaiono nelle schede e nella pagina Prodotti. Va rilanciato ogni volta che si cambiano i dati dei prodotti.
+Serve Chromium (nel percorso indicato in cima allo script). I PDF riportano "BOZZA" finché `PREVIEW = True`.
+
 ## Preso dal sito attuale (screenshot del cliente)
 
 Testi inglesi e dati tecnici dei 4 prodotti (ATLANTIS BAE6/BAE9, COLUMBUS 1000, U-COOL 1200/50),

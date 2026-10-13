@@ -92,7 +92,7 @@ T = {
             "open": "Scheda tecnica", "back": "← Tutti i prodotti", "request": "Richiedi informazioni su questo prodotto",
             "spec_h": "Caratteristiche tecniche", "images_h": "Immagini",
             "title": "{name} | Bosari Thermal Management",
-            "key_h": "In sintesi", "compare": "Confronto BAE6 / BAE9",
+            "key_h": "In sintesi", "pdf": "Scarica la scheda (PDF)", "catalog": "Scarica il catalogo completo (PDF)", "compare": "Confronto BAE6 / BAE9",
         },
         "services": {
             "h1": "Servizi", "sub": "Dalla specifica al prodotto, e oltre.",
@@ -207,7 +207,7 @@ T = {
             "open": "Data sheet", "back": "← All products", "request": "Request information on this product",
             "spec_h": "Technical characteristics", "images_h": "Images",
             "title": "{name} | Bosari Thermal Management",
-            "key_h": "At a glance", "compare": "BAE6 / BAE9 comparison",
+            "key_h": "At a glance", "pdf": "Download data sheet (PDF)", "catalog": "Download the full catalogue (PDF)", "compare": "BAE6 / BAE9 comparison",
         },
         "services": {
             "h1": "Services", "sub": "From specification to product, and beyond.",
@@ -481,17 +481,16 @@ def page_products(lang, t):
             f'<div class="family" id="{f["id"]}"><h2>{esc(f["name"])} · {esc(f["title"][lang])}</h2><div class="rule"></div>'
             f'<p class="lead">{esc(f["intro"][lang])}</p><div class="grid g3">{"".join(cards)}</div>{extra}</div>'
         )
+    cat = f"bosari-catalogo-{lang}.pdf" if lang == "it" else f"bosari-catalogue-{lang}.pdf"
+    catbtn = f'<p><a class="btn btn-outline" href="../download/{cat}" download>{p["catalog"]}</a></p>' if has_pdf(cat) else ""
     return (
         hero(p["h1"], p["sub"])
-        + f'<section><div class="wrap"><ul class="subnav">{sub}</ul>{"".join(blocks)}</div></section>'
+        + f'<section><div class="wrap"><ul class="subnav">{sub}</ul>{catbtn}{"".join(blocks)}</div></section>'
     )
 
 
-def page_product(pid, lang, t):
-    p = t["products"]
-    pr = P.PRODUCTS[pid]
-    fam = next(f for f in P.FAMILIES if f["id"] == pr["family"])
-    # testi: tre modelli diversi di scheda (comune ATLANTIS / paragrafi / sezioni)
+def product_body(pr, lang):
+    """Testo descrittivo di un prodotto (HTML). Tre modelli di scheda: comune ATLANTIS / paragrafi / sezioni."""
     body = ""
     if "text" in pr:
         paras = [x.replace("{power}", v(pr["power"], lang)) for x in P.ATLANTIS_TEXT[lang]]
@@ -503,6 +502,29 @@ def page_product(pid, lang, t):
             body += f"<h3>{h}</h3>" + "".join(f"<p>{x}</p>" for x in ps)
             if i == len(pr["sections"][lang]) - 1 and pr.get("construction"):
                 body += "<ol>" + "".join(f"<li>{x}</li>" for x in pr["construction"][lang]) + "</ol>"
+    return body
+
+
+def pdf_name(pid, lang):
+    return f"bosari-{pid}-{lang}.pdf"
+
+
+def has_pdf(name):
+    return os.path.exists(os.path.join(SITE, "download", name))
+
+
+def pdf_btn(pid, lang, p):
+    n = pdf_name(pid, lang)
+    if not has_pdf(n):
+        return ""
+    return f' <a class="btn btn-outline" href="../download/{n}" download>{p["pdf"]}</a>'
+
+
+def page_product(pid, lang, t):
+    p = t["products"]
+    pr = P.PRODUCTS[pid]
+    fam = next(f for f in P.FAMILIES if f["id"] == pr["family"])
+    body = product_body(pr, lang)
     keys = "".join(f"<li>{k}</li>" for k in pr["key"][lang])
     gallery = ""
     imgs = [(fn.replace("{lang}", lang), cap) for fn, cap in pr["images"]]
@@ -514,7 +536,7 @@ def page_product(pid, lang, t):
         hero(esc(pr["name"]), esc(v(pr["subtitle"], lang)))
         + f'<section><div class="wrap"><p class="back"><a href="{href("products", lang, fam["id"])}">{p["back"]}</a></p>'
         + f'<div class="detail"><div class="text"><h2>{p["key_h"]}</h2><div class="rule"></div><ul class="ticks">{keys}</ul>{body}'
-        + f'<p><a class="btn btn-red" href="{href("contacts", lang)}?p={pid}">{p["request"]}</a></p></div>'
+        + f'<p><a class="btn btn-red" href="{href("contacts", lang)}?p={pid}">{p["request"]}</a>{pdf_btn(pid, lang, p)}</p></div>'
         + f'<div class="specs"><figure class="art-box"><img src="../img/{pr["art"]}" alt="{esc(pr["name"])}"></figure><h2>{p["spec_h"]}</h2><div class="rule"></div>{spec_tables(pr, lang)}</div></div></div></section>'
         + gallery
     )

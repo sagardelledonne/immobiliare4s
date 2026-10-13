@@ -46,18 +46,19 @@ di farlo va sostituito tutto quanto segue.
 | Pagina Novità (3 notizie con date) | `build.py` (`T[..]["news"]`) | inventata, date comprese |
 | Logo (tubo a U + tre alette tricolore) | `build.py` (`LOGO_SVG`, `FAVICON`) | disegnato per la bozza |
 | Foto di copertina (cartiglio sfuocato) | `site/img/hero.jpg`, `make_hero.py` | immagine generata |
-| Schema del U-COOL | `site/img/ucool-it.svg`, `ucool-en.svg`, `make_ucool.py` | disegno illustrativo |
+| Schema del U-COOL (accanto alla foto vera) | `site/img/ucool-it.svg`, `ucool-en.svg`, `make_ucool.py` | disegno illustrativo, non in scala |
 
 ## Preso dal sito attuale (screenshot del cliente)
 
 Testi inglesi e dati tecnici dei 4 prodotti (ATLANTIS BAE6/BAE9, COLUMBUS 1000, U-COOL 1200/50),
-con 5 foto/disegni ritagliati (bassa risoluzione). Le versioni italiane sono traduzioni da far rivedere.
+con foto e disegni ritagliati (bassa risoluzione). Le versioni italiane sono traduzioni da far rivedere.
 Il vecchio menu era Home, Company Profile, Products, Services, News: qui e' lo stesso, piu' Contatti.
 
-## Per usare la foto vera del U-COOL
+## Foto
 
-Salvarla come `site/img/ucool-foto.jpg` e lanciare `python3 build.py`: compare nella scheda e
-nell'elenco al posto dello schema. Lo stesso vale per la foto di copertina (`site/img/hero.jpg`).
+La foto del U-COOL 1200/50 (`site/img/ucool-foto.jpg`) e' quella fornita dal cliente, ma e' piccola
+(316 x 388 px): conviene l'originale. Per cambiare una foto basta sovrascrivere il file e rilanciare
+`python3 build.py`. Lo stesso vale per la copertina (`site/img/hero.jpg`, segnaposto generato).
 
 ## Note tecniche
 

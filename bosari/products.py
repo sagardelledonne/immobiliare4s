@@ -245,7 +245,7 @@ PRODUCTS = {
         "note": None,
         # ucool-foto.jpg = foto vera (da aggiungere); in sua assenza si usa lo schema illustrativo inventato
         "images": [("ucool-foto.jpg", L("U-COOL 1200/50", "U-COOL 1200/50")),
-                   ("ucool-{lang}.svg", L("Schema illustrativo (inventato)", "Illustrative sketch (invented)"))],
+                   ("ucool-{lang}.svg", L("Schema illustrativo, non in scala", "Illustrative sketch, not to scale"))],
         "thumbs": ["ucool-foto.jpg", "ucool-{lang}.svg"],
     },
 }

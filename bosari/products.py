@@ -16,6 +16,7 @@ FAMILIES = [
             "Raffreddatori ad acqua in alluminio per tiristori, GTO e IGBT: fino a 4.000 W dissipati sulle due facce.",
             "Aluminium water coolers for thyristors, GTOs and IGBTs: up to 4,000 W dissipated on both sides.",
         ),
+        "art": "art-atlantis-bae9.svg",
         "products": ["bae6", "bae9"],
     },
     {
@@ -26,6 +27,7 @@ FAMILIES = [
             "Scambiatori controcorrente a circuiti separati, senza scambio d'aria tra armadio e ambiente, conformi a IP55 e NEMA 12.",
             "Counterflow exchangers with separated circuits and no air exchange between cabinet and ambient, compliant with IP55 and NEMA 12.",
         ),
+        "art": "art-columbus.svg",
         "products": ["columbus1000"],
     },
     {
@@ -36,6 +38,7 @@ FAMILIES = [
             "Raffreddatori a heat pipe a convezione naturale, nati per l'elettronica di potenza sui veicoli ferroviari.",
             "Natural-convection heat pipe coolers, designed for power electronics on railway vehicles.",
         ),
+        "art": "art-ucool.svg",
         "products": ["ucool1200"],
     },
 ]
@@ -105,7 +108,8 @@ PRODUCTS = {
         "note": ATLANTIS_NOTE,
         "images": [("atlantis-foto.jpg", L("Raffreddatori ATLANTIS", "ATLANTIS coolers")),
                    ("bae6-disegno.png", L("Disegno quotato BAE6", "BAE6 outline drawing"))],
-        "thumbs": ["atlantis-foto.jpg"],
+        "art": "art-atlantis-bae6.svg",
+        "thumbs": ["art-atlantis-bae6.svg"],
     },
     "bae9": {
         "file": "atlantis-bae9.html",
@@ -121,7 +125,8 @@ PRODUCTS = {
         "note": ATLANTIS_NOTE,
         "images": [("atlantis-foto.jpg", L("Raffreddatori ATLANTIS", "ATLANTIS coolers")),
                    ("bae9-disegno.png", L("Disegno quotato BAE9", "BAE9 outline drawing"))],
-        "thumbs": ["atlantis-foto.jpg"],
+        "art": "art-atlantis-bae9.svg",
+        "thumbs": ["art-atlantis-bae9.svg"],
     },
     "columbus1000": {
         "file": "columbus-1000.html",
@@ -171,7 +176,8 @@ PRODUCTS = {
         "images": [("columbus-1.jpg", L("COLUMBUS 1000 aperto", "COLUMBUS 1000 open")),
                    ("columbus-2.jpg", L("COLUMBUS 1000, lato ventole", "COLUMBUS 1000, fan side")),
                    ("columbus-3.jpg", L("COLUMBUS 1000, retro", "COLUMBUS 1000, rear"))],
-        "thumbs": ["columbus-2.jpg"],
+        "art": "art-columbus.svg",
+        "thumbs": ["art-columbus.svg"],
     },
     "ucool1200": {
         "file": "u-cool-1200-50.html",
@@ -246,6 +252,21 @@ PRODUCTS = {
         # ucool-foto.jpg = foto vera (da aggiungere); in sua assenza si usa lo schema illustrativo inventato
         "images": [("ucool-foto.jpg", L("U-COOL 1200/50", "U-COOL 1200/50")),
                    ("ucool-{lang}.svg", L("Schema illustrativo, non in scala", "Illustrative sketch, not to scale"))],
-        "thumbs": ["ucool-foto.jpg", "ucool-{lang}.svg"],
+        "art": "art-ucool.svg",
+        "thumbs": ["art-ucool.svg"],
     },
+}
+
+
+# ---- confronto ATLANTIS (dati dalle schede tecniche) ----
+COMPARE_ATLANTIS = {
+    "head": ["BAE6", "BAE9"],
+    "rows": [
+        (L("Potenza dissipabile (due lati)", "Dissipated power (both sides)"), "3.000 W", "4.000 W"),
+        (L("Rth un lato @6 l/min", "Rth single side @6 l/min"), "16 K/kW", "11 K/kW"),
+        (L("Rth due lati @6 l/min", "Rth double side @6 l/min"), "10,5 K/kW", "7 K/kW"),
+        (L("Area di contatto fino a", "Contact area up to"), L("Ø 49 mm (55 su richiesta)", "Ø 49 mm (55 on request)"), L("Ø 79 mm (85 su richiesta)", "Ø 79 mm (85 on request)")),
+        (L("Forza di serraggio fino a", "Clamping force up to"), "60 kN", "90 kN"),
+        (L("Peso", "Weight"), L("160 g circa", "160 g approx."), L("330 g circa", "330 g approx.")),
+    ],
 }

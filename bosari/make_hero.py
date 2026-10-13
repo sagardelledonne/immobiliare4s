@@ -118,3 +118,11 @@ img.alpha_composite(dark)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 img.convert("RGB").save(OUT, "JPEG", quality=82, optimize=True)
 print("scritto", OUT, os.path.getsize(OUT) // 1024, "KB")
+
+# immagine per le anteprime social (WhatsApp, LinkedIn, ...): 1200x630 dalla copertina
+soc = Image.open(OUT).convert("RGB")
+sw, sh = soc.size
+left = (sw - int(sh * 1200 / 630)) // 2
+soc = soc.crop((max(0, left), 0, sw - max(0, left), sh)).resize((1200, 630), Image.LANCZOS)
+soc.save(os.path.join(ROOT, "site", "social.jpg"), "JPEG", quality=85, optimize=True)
+print("scritto social.jpg")

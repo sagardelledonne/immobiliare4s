@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Bosari Thermal Management S.r.l.">
 <meta property="og:title" content="Contacts and how to reach us | Bosari Thermal Management">
 <meta property="og:description" content="Contacts, information requests and map to reach Bosari Thermal Management in Opera (Milan), Italy.">
-<meta property="og:image" content="https://www.bosari.it/img/hero.jpg">
+<meta property="og:image" content="https://www.bosari.it/social.jpg">
 <link rel="stylesheet" href="../css/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Bosari Thermal Management S.r.l.","url":"https://www.bosari.it/","address":{"@type":"PostalAddress","streetAddress":"Via Eugenio Montale, 14","postalCode":"20090","addressLocality":"Opera","addressRegion":"MI","addressCountry":"IT"},"telephone":"+39 02 1234 5678","email":"info@bosari.it"}</script>
 </head>
@@ -37,27 +37,40 @@
 <label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required>
 <label for="f-co">Company</label><input id="f-co" name="company" autocomplete="organization">
 <label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email" required>
+<label for="f-prod">Product of interest</label><select id="f-prod" name="product"><option value="">Other / not sure yet</option><option value="bae6">ATLANTIS® BAE6</option><option value="bae9">ATLANTIS® BAE9</option><option value="columbus1000">COLUMBUS 1000</option><option value="ucool1200">U-COOL® 1200/50</option></select>
 <label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea>
+<p class="check"><input id="f-ok" name="consent" type="checkbox" required><label for="f-ok">I have read the <a href="privacy.html">privacy notice</a> and consent to the processing of my data to answer my request.</label></p>
 <p><button class="btn btn-red" type="submit">Prepare the request</button></p>
 <p class="note">The button opens your email program with the message ready to send.</p>
 </form>
 <script>
-document.getElementById('req').addEventListener('submit', function (e) {
-  e.preventDefault();
-  var f = e.target;
-  var body = {n: f.name.value, c: f.company.value, e: f.email.value, m: f.message.value};
-  var text = 'Full name: ' + body.n + '\nCompany: ' + body.c + '\nEmail: ' + body.e + '\n\n' + body.m;
-  window.location.href = 'mailto:info@bosari.it?subject=' + encodeURIComponent('Information request from the website') + '&body=' + encodeURIComponent(text);
+(function () {
+  var f = document.getElementById('req');
+  var m = /[?&]p=([a-z0-9]+)/.exec(location.search);
+  if (m) f.elements['product'].value = m[1];
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pr = f.elements['product'];
+    var prod = pr.options[pr.selectedIndex].text;
+    var text = 'Full name: ' + f.elements['name'].value + '\nCompany: ' + f.elements['company'].value + '\nEmail: ' + f.elements['email'].value + '\nProduct of interest: ' + prod + '\n\n' + f.elements['message'].value;
+    window.location.href = 'mailto:info@bosari.it?subject=' + encodeURIComponent('Information request from the website') + '&body=' + encodeURIComponent(text);
+  });
+})();
+</script></div></div></div></section><section class="alt"><div class="wrap"><h2>How to reach us</h2><div class="rule"></div><p>Open the route from your starting point:</p><p><a class="btn btn-green" href="https://www.google.com/maps/dir/?api=1&destination=Via+Eugenio+Montale+14%2C+20090+Opera+MI%2C+Italia" target="_blank" rel="noopener">Driving directions (Google Maps)</a> <a href="https://www.openstreetmap.org/search?query=Via+Eugenio+Montale+14%2C+20090+Opera+MI%2C+Italia" target="_blank" rel="noopener">Open on OpenStreetMap</a></p><div class="map" id="map"><div class="map-consent"><p>The map is provided by Google Maps: by loading it, Google may set cookies and process browsing data. It is loaded only if you ask.</p><p><button class="btn btn-green" type="button" id="map-load">Load the map</button></p></div></div>
+<script>
+document.getElementById('map-load').addEventListener('click', function () {
+  var box = document.getElementById('map');
+  box.innerHTML = '<iframe title="How to reach us" src="https://www.google.com/maps?q=Via+Eugenio+Montale+14%2C+20090+Opera+MI%2C+Italia&output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 });
-</script></div></div></div></section><section class="alt"><div class="wrap"><h2>How to reach us</h2><div class="rule"></div><p>We are in Opera, south of Milan. Open the route from your starting point:</p><p><a class="btn btn-green" href="https://www.google.com/maps/dir/?api=1&destination=Via+Eugenio+Montale+14%2C+20090+Opera+MI%2C+Italia" target="_blank" rel="noopener">Driving directions (Google Maps)</a> <a href="https://www.openstreetmap.org/search?query=Via+Eugenio+Montale+14%2C+20090+Opera+MI%2C+Italia" target="_blank" rel="noopener">Open on OpenStreetMap</a></p><div class="map"><iframe title="How to reach us" src="https://www.google.com/maps?q=Via+Eugenio+Montale+14%2C+20090+Opera+MI%2C+Italia&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></section></main>
+</script><h3 class="how">Directions</h3><p>We are in Opera, south of Milan. By car: visitor parking is available at our premises. By public transport: use the button above for the route from your starting point.</p></div></section></main>
 <footer class="site-footer">
 <div class="tricolor" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="foot">
 <div><h3>Bosari Thermal Management S.r.l.</h3><address><p><strong>Bosari Thermal Management S.r.l.</strong><br>Via Eugenio Montale, 14<br>20090 Opera (MI), Italy</p><p>Phone: <a href="tel:+390212345678">+39 02 1234 5678</a></p><p>Email: <a href="mailto:info@bosari.it">info@bosari.it</a></p><p>VAT number: IT01234567890</p><p>Opening hours: Monday – Friday, 8:30 am – 12:30 pm and 1:30 pm – 5:30 pm</p></address></div>
-<div><h3>Sections</h3><ul><li><a href="index.html">Home</a></li><li><a href="company.html">Company Profile</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li><li><a href="news.html">News</a></li><li><a href="contacts.html">Contacts</a></li></ul></div>
+<div><h3>Sections</h3><ul><li><a href="index.html">Home</a></li><li><a href="company.html">Company Profile</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li><li><a href="news.html">News</a></li><li><a href="contacts.html">Contacts</a></li><li><a href="privacy.html">Privacy notice</a></li></ul></div>
 <div><h3>Contacts</h3><ul><li><a href="mailto:info@bosari.it">info@bosari.it</a></li><li>+39 02 1234 5678</li></ul></div>
 </div>
-<div class="legal">© Bosari Thermal Management S.r.l. · All rights reserved.</div>
+<div class="legal">© Bosari Thermal Management S.r.l. · All rights reserved. · <a href="privacy.html">Privacy notice</a></div>
 </footer>
 </body>
 </html>

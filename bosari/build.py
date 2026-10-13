@@ -19,7 +19,9 @@ PAGES = {
     "services": {"it": "servizi.html",   "en": "services.html"},
     "news":     {"it": "novita.html",    "en": "news.html"},
     "contacts": {"it": "contatti.html", "en": "contacts.html"},
+    "privacy":  {"it": "privacy.html",  "en": "privacy.html"},
 }
+NAV = ["home", "company", "products", "services", "news", "contacts"]   # voci del menu (privacy solo nel piede)
 
 T = {
     "it": {
@@ -32,6 +34,7 @@ T = {
             "home": "Bosari Thermal Management | Raffreddamento per elettronica di potenza",
             "company": "Profilo aziendale | Bosari Thermal Management",
             "products": "Prodotti | Bosari Thermal Management",
+            "privacy": "Informativa privacy | Bosari Thermal Management",
             "services": "Servizi | Bosari Thermal Management",
             "news": "Novità | Bosari Thermal Management",
             "contacts": "Contatti e come raggiungerci | Bosari Thermal Management",
@@ -40,6 +43,7 @@ T = {
             "home": "Bosari Thermal Management progetta e produce raffreddatori ad acqua ATLANTIS, scambiatori COLUMBUS e sistemi a heat pipe U-COOL per l'elettronica di potenza. Opera (MI).",
             "company": "Chi è Bosari Thermal Management: gestione termica per l'elettronica di potenza, a Opera (Milano).",
             "products": "Prodotti Bosari: raffreddatori ad acqua ATLANTIS BAE6 e BAE9, scambiatore COLUMBUS 1000, sistema a heat pipe U-COOL 1200/50, con schede tecniche.",
+            "privacy": "Come Bosari Thermal Management tratta i dati personali raccolti tramite il sito.",
             "services": "Dall'analisi termica al prototipo, alla produzione e all'assistenza: i servizi di Bosari Thermal Management.",
             "news": "Novità e aggiornamenti da Bosari Thermal Management.",
             "contacts": "Contatti, richiesta di informazioni e mappa per raggiungere Bosari Thermal Management a Opera (MI).",
@@ -88,7 +92,7 @@ T = {
             "open": "Scheda tecnica", "back": "← Tutti i prodotti", "request": "Richiedi informazioni su questo prodotto",
             "spec_h": "Caratteristiche tecniche", "images_h": "Immagini",
             "title": "{name} | Bosari Thermal Management",
-            "key_h": "In sintesi",
+            "key_h": "In sintesi", "compare": "Confronto BAE6 / BAE9",
         },
         "services": {
             "h1": "Servizi", "sub": "Dalla specifica al prodotto, e oltre.",
@@ -110,19 +114,30 @@ T = {
                 ("2026-03-02", "2 marzo 2026", "Scheda tecnica U-COOL 1200/50", "Pubblicata la scheda del sistema a heat pipe per il raffreddamento di inverter IGBT su veicoli ferroviari."),
             ],
         },
+        "privacy": {
+            "h1": "Informativa privacy", "sub": "Come trattiamo i dati personali raccolti tramite questo sito.",
+            "sections": [
+                ("Titolare del trattamento", "{company}, {addr}, {zip}. Email: {email}."),
+                ("Quali dati raccogliamo", "Solo quelli che ci scrivete voi: nome, azienda, email e testo del messaggio, quando preparate una richiesta dal modulo contatti. Il modulo non invia nulla da solo: apre il vostro programma di posta e i dati ci arrivano solo se inviate il messaggio."),
+                ("Perché e su quale base", "Per rispondere alla vostra richiesta di informazioni o di offerta (esecuzione di misure precontrattuali su vostra richiesta, art. 6.1.b GDPR). I dati non sono usati per altri scopi né ceduti a terzi."),
+                ("Per quanto tempo", "Per il tempo necessario a rispondere e, se nasce un rapporto commerciale, per la durata degli obblighi di legge."),
+                ("Cookie e servizi di terze parti", "Il sito non usa cookie di profilazione né strumenti di statistica. La mappa della pagina Contatti è un servizio di Google Maps e viene caricata solo dopo il vostro consenso esplicito, con il pulsante «Carica la mappa»."),
+                ("I vostri diritti", "Potete chiedere accesso, rettifica, cancellazione, limitazione e opposizione (artt. 15–22 GDPR) scrivendo a {email}. Avete anche il diritto di reclamo al Garante per la protezione dei dati personali."),
+            ],
+        },
         "contacts": {
             "h1": "Contatti", "sub": "Richiedete informazioni o un'offerta.",
             "where_h": "Dove siamo", "hours": "Orari", "tel": "Telefono", "mail": "Email", "vat": "Partita IVA",
             "form_h": "Richiesta di informazioni",
             "name": "Nome e cognome", "company": "Azienda", "email": "Email", "msg": "Messaggio",
-            "send": "Prepara la richiesta",
+            "send": "Prepara la richiesta", "product": "Prodotto di interesse", "other": "Altro / non so ancora", "consent": "Ho letto l'<a href=\"{privacy}\">informativa privacy</a> e acconsento al trattamento dei dati per rispondere alla mia richiesta.", "map_load": "Carica la mappa", "map_consent": "La mappa è fornita da Google Maps: caricandola, Google può installare cookie e trattare dati di navigazione. Viene caricata solo se lo chiedete.", "how": "Indicazioni", "how_p": "Siamo a Opera, a sud di Milano. In auto: parcheggio per i visitatori disponibile presso la sede. Con i mezzi pubblici: usate il pulsante qui sopra per il percorso dal vostro punto di partenza.",
             "form_note": "Il pulsante apre il vostro programma di posta con il messaggio già pronto da inviare.",
             "map_h": "Come raggiungerci",
-            "map_p": "Siamo a Opera, a sud di Milano. Aprite il percorso dal vostro punto di partenza:",
+            "map_p": "Aprite il percorso dal vostro punto di partenza:",
             "map_dir": "Indicazioni stradali (Google Maps)", "map_osm": "Apri su OpenStreetMap",
             "subject": "Richiesta di informazioni dal sito",
         },
-        "footer": {"nav": "Sezioni", "contact": "Contatti", "rights": "Tutti i diritti riservati."},
+        "footer": {"nav": "Sezioni", "contact": "Contatti", "rights": "Tutti i diritti riservati.", "privacy": "Informativa privacy"},
     },
     "en": {
         "lang": "en", "locale": "en_GB", "other": "it", "other_label": "IT",
@@ -134,6 +149,7 @@ T = {
             "home": "Bosari Thermal Management | Cooling for power electronics",
             "company": "Company Profile | Bosari Thermal Management",
             "products": "Products | Bosari Thermal Management",
+            "privacy": "Privacy notice | Bosari Thermal Management",
             "services": "Services | Bosari Thermal Management",
             "news": "News | Bosari Thermal Management",
             "contacts": "Contacts and how to reach us | Bosari Thermal Management",
@@ -142,6 +158,7 @@ T = {
             "home": "Bosari Thermal Management designs and manufactures ATLANTIS water coolers, COLUMBUS heat exchangers and U-COOL heat pipe systems for power electronics. Opera (Milan), Italy.",
             "company": "About Bosari Thermal Management: thermal management for power electronics, in Opera (Milan), Italy.",
             "products": "Bosari products: ATLANTIS BAE6 and BAE9 water coolers, COLUMBUS 1000 heat exchanger, U-COOL 1200/50 heat pipe system, with technical data.",
+            "privacy": "How Bosari Thermal Management handles personal data collected through the website.",
             "services": "From thermal analysis to prototype, production and support: the services of Bosari Thermal Management.",
             "news": "News and updates from Bosari Thermal Management.",
             "contacts": "Contacts, information requests and map to reach Bosari Thermal Management in Opera (Milan), Italy.",
@@ -190,7 +207,7 @@ T = {
             "open": "Data sheet", "back": "← All products", "request": "Request information on this product",
             "spec_h": "Technical characteristics", "images_h": "Images",
             "title": "{name} | Bosari Thermal Management",
-            "key_h": "At a glance",
+            "key_h": "At a glance", "compare": "BAE6 / BAE9 comparison",
         },
         "services": {
             "h1": "Services", "sub": "From specification to product, and beyond.",
@@ -212,19 +229,30 @@ T = {
                 ("2026-03-02", "2 March 2026", "U-COOL 1200/50 data sheet", "Published the data sheet of the heat pipe system for cooling IGBT inverters on railway vehicles."),
             ],
         },
+        "privacy": {
+            "h1": "Privacy notice", "sub": "How we handle personal data collected through this website.",
+            "sections": [
+                ("Data controller", "{company}, {addr}, {zip}. Email: {email}."),
+                ("What data we collect", "Only what you write to us: name, company, email and message text, when you prepare a request from the contact form. The form does not send anything by itself: it opens your email program, and the data reaches us only if you send the message."),
+                ("Why and on what basis", "To answer your request for information or a quotation (pre-contractual measures taken at your request, art. 6.1.b GDPR). The data is not used for other purposes nor passed to third parties."),
+                ("For how long", "For the time needed to answer and, if a business relationship starts, for the duration of legal obligations."),
+                ("Cookies and third-party services", "The site uses no profiling cookies and no analytics tools. The map on the Contacts page is a Google Maps service and is loaded only after your explicit consent, with the “Load the map” button."),
+                ("Your rights", "You may request access, rectification, erasure, restriction and objection (arts. 15–22 GDPR) by writing to {email}. You also have the right to lodge a complaint with the data protection authority."),
+            ],
+        },
         "contacts": {
             "h1": "Contacts", "sub": "Ask for information or a quotation.",
             "where_h": "Where we are", "hours": "Opening hours", "tel": "Phone", "mail": "Email", "vat": "VAT number",
             "form_h": "Information request",
             "name": "Full name", "company": "Company", "email": "Email", "msg": "Message",
-            "send": "Prepare the request",
+            "send": "Prepare the request", "product": "Product of interest", "other": "Other / not sure yet", "consent": "I have read the <a href=\"{privacy}\">privacy notice</a> and consent to the processing of my data to answer my request.", "map_load": "Load the map", "map_consent": "The map is provided by Google Maps: by loading it, Google may set cookies and process browsing data. It is loaded only if you ask.", "how": "Directions", "how_p": "We are in Opera, south of Milan. By car: visitor parking is available at our premises. By public transport: use the button above for the route from your starting point.",
             "form_note": "The button opens your email program with the message ready to send.",
             "map_h": "How to reach us",
-            "map_p": "We are in Opera, south of Milan. Open the route from your starting point:",
+            "map_p": "Open the route from your starting point:",
             "map_dir": "Driving directions (Google Maps)", "map_osm": "Open on OpenStreetMap",
             "subject": "Information request from the website",
         },
-        "footer": {"nav": "Sections", "contact": "Contacts", "rights": "All rights reserved."},
+        "footer": {"nav": "Sections", "contact": "Contacts", "rights": "All rights reserved.", "privacy": "Privacy notice"},
     },
 }
 
@@ -274,7 +302,7 @@ def head(page, lang, t, title, desc):
 <meta property="og:site_name" content="{C.COMPANY}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
-<meta property="og:image" content="{C.BASE_URL}img/hero.jpg">
+<meta property="og:image" content="{C.BASE_URL}social.jpg">
 <link rel="stylesheet" href="../css/style.css">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"{C.COMPANY}","url":"{C.BASE_URL}","address":{{"@type":"PostalAddress","streetAddress":"{C.ADDRESS_LINE}","postalCode":"20090","addressLocality":"Opera","addressRegion":"MI","addressCountry":"IT"}}{(',"telephone":"' + C.PHONE + '"') if C.PHONE else ''},"email":"{C.EMAIL}"}}</script>
 </head>
@@ -284,10 +312,10 @@ def head(page, lang, t, title, desc):
 
 
 def header(page, lang, t):
-    current = "products" if page not in PAGES else page
+    current = page if page in NAV else ("products" if page in P.PRODUCTS else "")
     items = "".join(
         f'<li><a href="{href(p, lang)}"{" aria-current=\"page\"" if p == current else ""}>{t["nav"][p]}</a></li>'
-        for p in PAGES
+        for p in NAV
     )
     other = t["other"]
     draft = f'<div class="draft" role="note">{t["draft"]}</div>' if C.PREVIEW else ""
@@ -327,7 +355,8 @@ def address_block(t, lang):
 
 def footer(page, lang, t):
     f = t["footer"]
-    nav = "".join(f'<li><a href="{href(p, lang)}">{t["nav"][p]}</a></li>' for p in PAGES)
+    nav = "".join(f'<li><a href="{href(p, lang)}">{t["nav"][p]}</a></li>' for p in NAV)
+    nav += f'<li><a href="{href("privacy", lang)}">{f["privacy"]}</a></li>'
     return f"""</main>
 <footer class="site-footer">
 <div class="tricolor" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -336,7 +365,7 @@ def footer(page, lang, t):
 <div><h3>{f['nav']}</h3><ul>{nav}</ul></div>
 <div><h3>{f['contact']}</h3><ul>{('<li><a href="mailto:' + C.EMAIL + '">' + C.EMAIL + '</a></li>') if C.EMAIL else ''}{('<li>' + C.PHONE + '</li>') if C.PHONE else ''}</ul></div>
 </div>
-<div class="legal">© {C.COMPANY} · {f['rights']}</div>
+<div class="legal">© {C.COMPANY} · {f['rights']} · <a href="{href('privacy', lang)}">{f['privacy']}</a></div>
 </footer>
 </body>
 </html>
@@ -347,7 +376,7 @@ def family_cards(lang, t, more):
     out = []
     for f in P.FAMILIES:
         out.append(
-            f'<article class="card"><h3>{esc(f["name"])} · {esc(f["title"][lang])}</h3><p>{esc(f["intro"][lang])}</p>'
+            f'<article class="card"><img class="art" src="../img/{f["art"]}" alt="" loading="lazy"><h3>{esc(f["name"])} · {esc(f["title"][lang])}</h3><p>{esc(f["intro"][lang])}</p>'
             f'<a class="more" href="{href("products", lang, f["id"])}">{more} →</a></article>'
         )
     return "".join(out)
@@ -425,6 +454,13 @@ def v(x, lang):
     return x
 
 
+def compare_table(lang, p):
+    cmp_ = P.COMPARE_ATLANTIS
+    head_ = "".join(f"<th scope=\"col\">{h}</th>" for h in cmp_["head"])
+    rows = "".join(f'<tr><th scope="row">{v(lbl, lang)}</th><td>{v(a, lang)}</td><td>{v(b, lang)}</td></tr>' for lbl, a, b in cmp_["rows"])
+    return f'<table class="spec-table compare"><caption>{p["compare"]}</caption><thead><tr><th></th>{head_}</tr></thead><tbody>{rows}</tbody></table>'
+
+
 def page_products(lang, t):
     p = t["products"]
     sub = "".join(f'<li><a href="#{f["id"]}">{esc(f["name"])}</a></li>' for f in P.FAMILIES)
@@ -440,9 +476,10 @@ def page_products(lang, t):
                 f'<article class="card product-card">{img}<h3>{esc(pr["name"])}</h3><p>{esc(v(pr["subtitle"], lang))}</p>'
                 f'<ul class="ticks">{keys}</ul><a class="btn btn-green" href="{pr["file"]}">{p["open"]}</a></article>'
             )
+        extra = compare_table(lang, p) if f["id"] == "atlantis" else ""
         blocks.append(
             f'<div class="family" id="{f["id"]}"><h2>{esc(f["name"])} · {esc(f["title"][lang])}</h2><div class="rule"></div>'
-            f'<p class="lead">{esc(f["intro"][lang])}</p><div class="grid g3">{"".join(cards)}</div></div>'
+            f'<p class="lead">{esc(f["intro"][lang])}</p><div class="grid g3">{"".join(cards)}</div>{extra}</div>'
         )
     return (
         hero(p["h1"], p["sub"])
@@ -477,10 +514,18 @@ def page_product(pid, lang, t):
         hero(esc(pr["name"]), esc(v(pr["subtitle"], lang)))
         + f'<section><div class="wrap"><p class="back"><a href="{href("products", lang, fam["id"])}">{p["back"]}</a></p>'
         + f'<div class="detail"><div class="text"><h2>{p["key_h"]}</h2><div class="rule"></div><ul class="ticks">{keys}</ul>{body}'
-        + f'<p><a class="btn btn-red" href="{href("contacts", lang)}">{p["request"]}</a></p></div>'
-        + f'<div class="specs"><h2>{p["spec_h"]}</h2><div class="rule"></div>{spec_tables(pr, lang)}</div></div></div></section>'
+        + f'<p><a class="btn btn-red" href="{href("contacts", lang)}?p={pid}">{p["request"]}</a></p></div>'
+        + f'<div class="specs"><figure class="art-box"><img src="../img/{pr["art"]}" alt="{esc(pr["name"])}"></figure><h2>{p["spec_h"]}</h2><div class="rule"></div>{spec_tables(pr, lang)}</div></div></div></section>'
         + gallery
     )
+
+
+def page_privacy(lang, t):
+    pv = t["privacy"]
+    country = C.COUNTRY_IT if lang == "it" else C.COUNTRY_EN
+    fill = dict(company=C.COMPANY, addr=C.ADDRESS_LINE, zip=C.ZIP_CITY + ", " + country, email=C.EMAIL)
+    items = "".join(f"<h2>{h}</h2><div class=\"rule\"></div><p>{x.format(**fill)}</p>" for h, x in pv["sections"])
+    return hero(pv["h1"], pv["sub"]) + f'<section><div class="wrap"><div class="prose">{items}</div></div></section>'
 
 
 def page_contacts(lang, t):
@@ -490,21 +535,38 @@ def page_contacts(lang, t):
     directions = f"https://www.google.com/maps/dir/?api=1&destination={q}"
     osm = f"https://www.openstreetmap.org/search?query={q}"
     subject = esc(c["subject"])
+    options = f'<option value="">{c["other"]}</option>' + "".join(
+        f'<option value="{pid}">{esc(pr["name"])}</option>' for pid, pr in P.PRODUCTS.items())
+    consent = c["consent"].replace("{privacy}", href("privacy", lang))
     form = f"""<form id="req" action="mailto:{C.EMAIL}" method="post" enctype="text/plain">
 <label for="f-name">{c['name']}</label><input id="f-name" name="name" autocomplete="name" required>
 <label for="f-co">{c['company']}</label><input id="f-co" name="company" autocomplete="organization">
 <label for="f-mail">{c['email']}</label><input id="f-mail" name="email" type="email" autocomplete="email" required>
+<label for="f-prod">{c['product']}</label><select id="f-prod" name="product">{options}</select>
 <label for="f-msg">{c['msg']}</label><textarea id="f-msg" name="message" required></textarea>
+<p class="check"><input id="f-ok" name="consent" type="checkbox" required><label for="f-ok">{consent}</label></p>
 <p><button class="btn btn-red" type="submit">{c['send']}</button></p>
 <p class="note">{c['form_note']}</p>
 </form>
 <script>
-document.getElementById('req').addEventListener('submit', function (e) {{
-  e.preventDefault();
-  var f = e.target;
-  var body = {{n: f.name.value, c: f.company.value, e: f.email.value, m: f.message.value}};
-  var text = '{c['name']}: ' + body.n + '\\n{c['company']}: ' + body.c + '\\n{c['email']}: ' + body.e + '\\n\\n' + body.m;
-  window.location.href = 'mailto:{C.EMAIL}?subject=' + encodeURIComponent('{subject}') + '&body=' + encodeURIComponent(text);
+(function () {{
+  var f = document.getElementById('req');
+  var m = /[?&]p=([a-z0-9]+)/.exec(location.search);
+  if (m) f.elements['product'].value = m[1];
+  f.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var pr = f.elements['product'];
+    var prod = pr.options[pr.selectedIndex].text;
+    var text = '{c['name']}: ' + f.elements['name'].value + '\\n{c['company']}: ' + f.elements['company'].value + '\\n{c['email']}: ' + f.elements['email'].value + '\\n{c['product']}: ' + prod + '\\n\\n' + f.elements['message'].value;
+    window.location.href = 'mailto:{C.EMAIL}?subject=' + encodeURIComponent('{subject}') + '&body=' + encodeURIComponent(text);
+  }});
+}})();
+</script>"""
+    mapbox = f"""<div class="map" id="map"><div class="map-consent"><p>{c['map_consent']}</p><p><button class="btn btn-green" type="button" id="map-load">{c['map_load']}</button></p></div></div>
+<script>
+document.getElementById('map-load').addEventListener('click', function () {{
+  var box = document.getElementById('map');
+  box.innerHTML = '<iframe title="{esc(c['map_h'])}" src="{embed}" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 }});
 </script>"""
     return (
@@ -513,12 +575,13 @@ document.getElementById('req').addEventListener('submit', function (e) {{
         + f'<div><h2>{c["form_h"]}</h2><div class="rule"></div>{form}</div></div></div></section>'
         + f'<section class="alt"><div class="wrap"><h2>{c["map_h"]}</h2><div class="rule"></div><p>{c["map_p"]}</p>'
         + f'<p><a class="btn btn-green" href="{directions}" target="_blank" rel="noopener">{c["map_dir"]}</a> <a href="{osm}" target="_blank" rel="noopener">{c["map_osm"]}</a></p>'
-        + f'<div class="map"><iframe title="{c["map_h"]}" src="{embed}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></section>'
+        + f'{mapbox}<h3 class="how">{c["how"]}</h3><p>{c["how_p"]}</p></div></section>'
     )
 
 
 BUILDERS = {"home": page_home, "company": page_company, "products": page_products,
-            "services": page_services, "news": page_news, "contacts": page_contacts}
+            "services": page_services, "news": page_news, "contacts": page_contacts,
+            "privacy": page_privacy}
 
 FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" fill="#fff"/><rect x="11" y="4" width="7" height="31" fill="#008c45"/><rect x="20.5" y="4" width="7" height="31" fill="#fff" stroke="#b4bfb8" stroke-width="1"/><rect x="30" y="4" width="7" height="31" fill="#cd212a"/><path d="M6 3 V28 A18 18 0 0 0 42 28 V3" fill="none" stroke="#17211c" stroke-width="3.5" stroke-linecap="round"/></svg>"""
 
@@ -534,6 +597,24 @@ location.replace(l + '/index.html');
 <noscript><meta http-equiv="refresh" content="0; url=it/index.html"></noscript>
 </head><body><p><a href="it/index.html">Italiano</a> · <a href="en/index.html">English</a></p></body></html>
 """
+
+
+def write_extras():
+    urls = [C.BASE_URL + lang + "/" + fn for lang in T for fn in
+            [PAGES[p][lang] for p in PAGES] + [pr["file"] for pr in P.PRODUCTS.values()]]
+    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
+        f"<url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n"
+    with open(os.path.join(SITE, "sitemap.xml"), "w", encoding="utf-8") as fh:
+        fh.write(sm)
+    robots = "User-agent: *\n" + ("Disallow: /\n" if C.PREVIEW else "Allow: /\n") + f"Sitemap: {C.BASE_URL}sitemap.xml\n"
+    with open(os.path.join(SITE, "robots.txt"), "w", encoding="utf-8") as fh:
+        fh.write(robots)
+    nf = ("<!doctype html><html lang=\"it\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+          "<title>404 | Bosari Thermal Management</title><meta name=\"robots\" content=\"noindex\"><link rel=\"stylesheet\" href=\"css/style.css\"></head>"
+          "<body><main class=\"wrap\" style=\"padding:80px 20px\"><h1>404</h1><p class=\"lead\">Pagina non trovata / Page not found.</p>"
+          "<p><a class=\"btn btn-green\" href=\"it/index.html\">Italiano</a> <a class=\"btn btn-green\" href=\"en/index.html\">English</a></p></main></body></html>")
+    with open(os.path.join(SITE, "404.html"), "w", encoding="utf-8") as fh:
+        fh.write(nf)
 
 
 def write(lang, fn, html):
@@ -553,6 +634,7 @@ def main():
             desc = f'{pr["name"]} – {v(pr["subtitle"], lang)}. ' + "; ".join(pr["key"][lang]) + "."
             html = head(pid, lang, t, title, desc) + header(pid, lang, t) + page_product(pid, lang, t) + footer(pid, lang, t)
             write(lang, pr["file"], html)
+    write_extras()
     with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as fh:
         fh.write(REDIRECT)
     with open(os.path.join(SITE, "favicon.svg"), "w", encoding="utf-8") as fh:

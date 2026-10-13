@@ -46,7 +46,18 @@ di farlo va sostituito tutto quanto segue.
 | Pagina Novità (3 notizie con date) | `build.py` (`T[..]["news"]`) | inventata, date comprese |
 | Logo (tubo a U + tre alette tricolore) | `build.py` (`LOGO_SVG`, `FAVICON`) | disegnato per la bozza |
 | Foto di copertina (cartiglio sfuocato) | `site/img/hero.jpg`, `make_hero.py` | immagine generata |
+| Illustrazioni dei prodotti (4 SVG: ATLANTIS BAE6/BAE9, COLUMBUS, U-COOL) | `site/img/art-*.svg`, `make_art.py` | disegnate al posto delle foto troppo piccole; le foto vere restano nella galleria |
+| Informativa privacy (testo tipo) | `build.py` (`T[..]["privacy"]`) | **va fatta verificare da un professionista** prima di pubblicare |
+| Parcheggio visitatori, indicazioni stradali | `build.py` (`T[..]["contacts"]["how_p"]`) | inventati |
 | Schema del U-COOL (accanto alla foto vera) | `site/img/ucool-it.svg`, `ucool-en.svg`, `make_ucool.py` | disegno illustrativo, non in scala |
+
+## Cosa e' stato aggiunto oltre ai contenuti
+
+- **Mappa con consenso**: Google Maps si carica solo cliccando "Carica la mappa" (niente cookie di terzi prima).
+- **Modulo contatti**: scelta del prodotto (preselezionato dal pulsante "Richiedi informazioni" nella scheda) e casella di consenso privacy obbligatoria.
+- **Confronto BAE6 / BAE9** nella pagina Prodotti (dati delle schede tecniche).
+- `sitemap.xml`, `robots.txt` (blocca tutto finché `PREVIEW = True`), pagina `404.html`, immagine per le anteprime social (`social.jpg`).
+- Controllato in browser: nessun errore JavaScript, nessun file mancante, nessun scorrimento orizzontale a 390 px.
 
 ## Preso dal sito attuale (screenshot del cliente)
 
@@ -65,5 +76,5 @@ La foto del U-COOL 1200/50 (`site/img/ucool-foto.jpg`) e' quella fornita dal cli
 - Nessuna animazione ne' transizione (il CSS le disattiva esplicitamente).
 - Unico JavaScript: scelta lingua nella pagina radice e preparazione dell'email nel modulo.
 - Il modulo non invia da solo: apre il programma di posta del visitatore con il testo pronto.
-- La mappa e' un incorporamento Google Maps; in alternativa c'e' il link a OpenStreetMap.
+- La mappa e' un incorporamento Google Maps caricato solo su richiesta; in alternativa c'e' il link a OpenStreetMap. Non e' stato possibile vederla caricarsi in questo ambiente (Google bloccato): provarla da un browser normale.
 - Adatto a telefono, con tema scuro automatico se il dispositivo lo usa.

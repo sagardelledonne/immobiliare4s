@@ -15,7 +15,11 @@ COUNTRY_IT = "Italia"
 COUNTRY_EN = "Italy"
 MAP_QUERY = "Via Eugenio Montale 14, 20090 Opera MI, Italia"  # usato da mappa e indicazioni stradali
 
-PHONE = ""        # DA CONFERMARE, es. "+39 02 0000000"
+PHONE = "+39 02 1234 5678"   # INVENTATO (segnaposto)
 EMAIL = "info@bosari.it"   # DA CONFERMARE: e' l'indirizzo che riceve le richieste del modulo contatti
-VAT = ""          # DA CONFERMARE: partita IVA
+VAT = "IT01234567890"        # INVENTATO (segnaposto)
 FOUNDED = "1996"  # DA CONFERMARE (anno di costituzione da registro imprese)
+
+# Orari: INVENTATI (segnaposto)
+HOURS_IT = "Lunedì – venerdì, 8:30 – 12:30 e 13:30 – 17:30"
+HOURS_EN = "Monday – Friday, 8:30 am – 12:30 pm and 1:30 pm – 5:30 pm"

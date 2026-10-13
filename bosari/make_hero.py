@@ -106,6 +106,15 @@ img.alpha_composite(tools)
 veil = Image.new("RGBA", (W, H), (0, 70, 40, 60))
 img.alpha_composite(veil)
 
+# effetto fotografico: grana, vignettatura
+noise = Image.effect_noise((W, H), 18).convert("RGB")
+img = Image.blend(img.convert("RGB"), noise, 0.05).convert("RGBA")
+vig = Image.radial_gradient("L").resize((W, H))        # 0 al centro, 255 ai bordi
+vig = vig.point(lambda v: int(max(0, v - 110) * 0.9))
+dark = Image.new("RGBA", (W, H), (0, 20, 10, 255))
+dark.putalpha(vig)
+img.alpha_composite(dark)
+
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 img.convert("RGB").save(OUT, "JPEG", quality=82, optimize=True)
 print("scritto", OUT, os.path.getsize(OUT) // 1024, "KB")

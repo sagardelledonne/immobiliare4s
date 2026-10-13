@@ -16,25 +16,32 @@ PAGES = {
     "home":     {"it": "index.html",    "en": "index.html"},
     "company":  {"it": "azienda.html",  "en": "company.html"},
     "products": {"it": "prodotti.html", "en": "products.html"},
+    "services": {"it": "servizi.html",   "en": "services.html"},
+    "news":     {"it": "novita.html",    "en": "news.html"},
     "contacts": {"it": "contatti.html", "en": "contacts.html"},
 }
 
 T = {
     "it": {
         "lang": "it", "locale": "it_IT", "other": "en", "other_label": "EN",
-        "nav": {"home": "Home", "company": "Profilo aziendale", "products": "Prodotti", "contacts": "Contatti"},
+        "nav": {"home": "Home", "company": "Profilo aziendale", "products": "Prodotti", "services": "Servizi", "news": "Novità", "contacts": "Contatti"},
         "skip": "Vai al contenuto",
+        "draft": "BOZZA – contatti, orari, storia, novità e alcune immagini sono segnaposto inventati: da sostituire con i dati reali prima della pubblicazione.",
         "tagline": "Thermal Management",
         "title": {
             "home": "Bosari Thermal Management | Raffreddamento per elettronica di potenza",
             "company": "Profilo aziendale | Bosari Thermal Management",
             "products": "Prodotti | Bosari Thermal Management",
+            "services": "Servizi | Bosari Thermal Management",
+            "news": "Novità | Bosari Thermal Management",
             "contacts": "Contatti e come raggiungerci | Bosari Thermal Management",
         },
         "desc": {
             "home": "Bosari Thermal Management progetta e produce raffreddatori ad acqua ATLANTIS, scambiatori COLUMBUS e sistemi a heat pipe U-COOL per l'elettronica di potenza. Opera (MI).",
             "company": "Chi è Bosari Thermal Management: gestione termica per l'elettronica di potenza, a Opera (Milano).",
             "products": "Prodotti Bosari: raffreddatori ad acqua ATLANTIS BAE6 e BAE9, scambiatore COLUMBUS 1000, sistema a heat pipe U-COOL 1200/50, con schede tecniche.",
+            "services": "Dall'analisi termica al prototipo, alla produzione e all'assistenza: i servizi di Bosari Thermal Management.",
+            "news": "Novità e aggiornamenti da Bosari Thermal Management.",
             "contacts": "Contatti, richiesta di informazioni e mappa per raggiungere Bosari Thermal Management a Opera (MI).",
         },
         "home": {
@@ -68,7 +75,13 @@ T = {
             ],
             "ref_h": "Settori",
             "ref": ["Trazione elettrica leggera e pesante, veicoli ferroviari", "Industria pesante e saldatura", "Armadi elettronici e camere ambientali"],
-            "note": "Testo del profilo aziendale originale da inserire.",
+            "story_h": "La nostra storia",
+            "story": [
+                "Bosari Thermal Management nasce a Opera nel " + C.FOUNDED + ", con l'idea di portare nell'elettronica di potenza un raffreddamento più efficiente, leggero e affidabile. Nel tempo la gamma si è sviluppata in tre linee: i raffreddatori ad acqua ATLANTIS, gli scambiatori COLUMBUS per armadi elettronici e i sistemi a heat pipe U-COOL.",
+                "Lavoriamo a stretto contatto con i progettisti dei nostri clienti: molte soluzioni, come il U-COOL, nascono da una loro specifica.",
+            ],
+            "proc_h": "Come lavoriamo",
+            "proc": [("Ascolto", "Raccogliamo la specifica: potenza da dissipare, temperature, spazio e norme."), ("Progetto", "Dimensioniamo la soluzione termica e prepariamo il disegno."), ("Prototipo", "Realizziamo un campione per verificare la soluzione."), ("Produzione", "Produciamo in serie con materiali selezionati e controllati."), ("Assistenza", "Seguiamo il cliente nella scelta, nell'installazione e nell'uso.")],
         },
         "products": {
             "h1": "Prodotti", "sub": "Raffreddatori ad acqua, scambiatori di calore e sistemi a heat pipe.",
@@ -77,9 +90,29 @@ T = {
             "title": "{name} | Bosari Thermal Management",
             "key_h": "In sintesi",
         },
+        "services": {
+            "h1": "Servizi", "sub": "Dalla specifica al prodotto, e oltre.",
+            "intro": "Oltre ai prodotti a catalogo, aiutiamo i clienti a risolvere il loro problema termico, dalla prima analisi fino all'assistenza.",
+            "items": [
+                ("Analisi e dimensionamento termico", "Partiamo dalla potenza da dissipare, dalle temperature ammesse e dallo spazio disponibile per proporre la soluzione più adatta."),
+                ("Progettazione e prototipi", "Disegno, scelta dei materiali e realizzazione di un campione per verificare la soluzione prima della serie."),
+                ("Prove e verifiche", "Verifiche termiche e meccaniche con riferimento alle norme richieste dal cliente, per esempio IEC 77 §16 per urti e vibrazioni."),
+                ("Produzione in serie", "Raffreddatori e scambiatori prodotti con materiali e componenti selezionati e controllati."),
+                ("Assistenza tecnica", "Supporto nella scelta, nell'installazione e nell'uso dei prodotti Bosari."),
+            ],
+            "cta_h": "Avete un'esigenza particolare?", "cta": "Descriveteci la vostra applicazione: vi diciamo come possiamo aiutarvi.", "btn": "Richiedi informazioni",
+        },
+        "news": {
+            "h1": "Novità", "sub": "Aggiornamenti da Bosari.",
+            "items": [
+                ("2026-09-15", "15 settembre 2026", "Nuovo sito Bosari", "Abbiamo rinnovato il sito: schede tecniche aggiornate, in italiano e in inglese."),
+                ("2026-06-10", "10 giugno 2026", "Raccordi in alluminio o titanio per ATLANTIS", "I raffreddatori ad acqua ATLANTIS possono montare il raccordo del fluido più adatto all'applicazione, in alluminio o in titanio."),
+                ("2026-03-02", "2 marzo 2026", "Scheda tecnica U-COOL 1200/50", "Pubblicata la scheda del sistema a heat pipe per il raffreddamento di inverter IGBT su veicoli ferroviari."),
+            ],
+        },
         "contacts": {
             "h1": "Contatti", "sub": "Richiedete informazioni o un'offerta.",
-            "where_h": "Dove siamo", "tel": "Telefono", "mail": "Email", "vat": "Partita IVA",
+            "where_h": "Dove siamo", "hours": "Orari", "tel": "Telefono", "mail": "Email", "vat": "Partita IVA",
             "form_h": "Richiesta di informazioni",
             "name": "Nome e cognome", "company": "Azienda", "email": "Email", "msg": "Messaggio",
             "send": "Prepara la richiesta",
@@ -93,19 +126,24 @@ T = {
     },
     "en": {
         "lang": "en", "locale": "en_GB", "other": "it", "other_label": "IT",
-        "nav": {"home": "Home", "company": "Company Profile", "products": "Products", "contacts": "Contacts"},
+        "nav": {"home": "Home", "company": "Company Profile", "products": "Products", "services": "Services", "news": "News", "contacts": "Contacts"},
         "skip": "Skip to content",
+        "draft": "DRAFT – contacts, opening hours, history, news and some images are invented placeholders: replace them with real data before publishing.",
         "tagline": "Thermal Management",
         "title": {
             "home": "Bosari Thermal Management | Cooling for power electronics",
             "company": "Company Profile | Bosari Thermal Management",
             "products": "Products | Bosari Thermal Management",
+            "services": "Services | Bosari Thermal Management",
+            "news": "News | Bosari Thermal Management",
             "contacts": "Contacts and how to reach us | Bosari Thermal Management",
         },
         "desc": {
             "home": "Bosari Thermal Management designs and manufactures ATLANTIS water coolers, COLUMBUS heat exchangers and U-COOL heat pipe systems for power electronics. Opera (Milan), Italy.",
             "company": "About Bosari Thermal Management: thermal management for power electronics, in Opera (Milan), Italy.",
             "products": "Bosari products: ATLANTIS BAE6 and BAE9 water coolers, COLUMBUS 1000 heat exchanger, U-COOL 1200/50 heat pipe system, with technical data.",
+            "services": "From thermal analysis to prototype, production and support: the services of Bosari Thermal Management.",
+            "news": "News and updates from Bosari Thermal Management.",
             "contacts": "Contacts, information requests and map to reach Bosari Thermal Management in Opera (Milan), Italy.",
         },
         "home": {
@@ -139,7 +177,13 @@ T = {
             ],
             "ref_h": "Sectors",
             "ref": ["Light and heavy electrical traction, railway vehicles", "Heavy industry and welding", "Electronic cabinets and environmental chambers"],
-            "note": "Original company profile text to be added.",
+            "story_h": "Our story",
+            "story": [
+                "Bosari Thermal Management was founded in Opera in " + C.FOUNDED + ", with the idea of bringing more efficient, lighter and more reliable cooling to power electronics. Over time the range has grown into three lines: the ATLANTIS water coolers, the COLUMBUS exchangers for electronic cabinets and the U-COOL heat pipe systems.",
+                "We work closely with our customers' designers: many solutions, such as the U-COOL, start from their specification.",
+            ],
+            "proc_h": "How we work",
+            "proc": [("Listening", "We collect the specification: power to dissipate, temperatures, space and standards."), ("Design", "We size the thermal solution and prepare the drawing."), ("Prototype", "We build a sample to verify the solution."), ("Production", "We produce in series with selected and controlled materials."), ("Support", "We follow the customer in choice, installation and use.")],
         },
         "products": {
             "h1": "Products", "sub": "Water coolers, heat exchangers and heat pipe systems.",
@@ -148,9 +192,29 @@ T = {
             "title": "{name} | Bosari Thermal Management",
             "key_h": "At a glance",
         },
+        "services": {
+            "h1": "Services", "sub": "From specification to product, and beyond.",
+            "intro": "Besides the catalogue products, we help customers solve their thermal problem, from the first analysis to support.",
+            "items": [
+                ("Thermal analysis and sizing", "We start from the power to dissipate, the allowed temperatures and the available space to propose the most suitable solution."),
+                ("Design and prototypes", "Drawing, choice of materials and a sample to verify the solution before series production."),
+                ("Tests and verifications", "Thermal and mechanical checks referring to the standards required by the customer, for example IEC 77 §16 for shocks and vibrations."),
+                ("Series production", "Coolers and exchangers made with selected and quality-controlled materials and components."),
+                ("Technical support", "Help with the choice, installation and use of Bosari products."),
+            ],
+            "cta_h": "Do you have a special need?", "cta": "Describe your application: we will tell you how we can help.", "btn": "Request information",
+        },
+        "news": {
+            "h1": "News", "sub": "Updates from Bosari.",
+            "items": [
+                ("2026-09-15", "15 September 2026", "New Bosari website", "We have renewed the website: updated data sheets, in Italian and English."),
+                ("2026-06-10", "10 June 2026", "Aluminium or titanium nipples for ATLANTIS", "ATLANTIS water coolers can mount the cooling fluid nipple best suited to the application, in aluminium or titanium."),
+                ("2026-03-02", "2 March 2026", "U-COOL 1200/50 data sheet", "Published the data sheet of the heat pipe system for cooling IGBT inverters on railway vehicles."),
+            ],
+        },
         "contacts": {
             "h1": "Contacts", "sub": "Ask for information or a quotation.",
-            "where_h": "Where we are", "tel": "Phone", "mail": "Email", "vat": "VAT number",
+            "where_h": "Where we are", "hours": "Opening hours", "tel": "Phone", "mail": "Email", "vat": "VAT number",
             "form_h": "Information request",
             "name": "Full name", "company": "Company", "email": "Email", "msg": "Message",
             "send": "Prepare the request",
@@ -164,7 +228,7 @@ T = {
     },
 }
 
-LOGO_SVG = """<svg viewBox="0 0 44 44" aria-hidden="true" focusable="false"><rect width="14.67" height="44" fill="#008c45"/><rect x="14.67" width="14.66" height="44" fill="#fff" stroke="#d6ddd8"/><rect x="29.33" width="14.67" height="44" fill="#cd212a"/></svg>"""
+LOGO_SVG = """<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="11" y="4" width="7" height="31" fill="#008c45"/><rect x="20.5" y="4" width="7" height="31" fill="#fff" stroke="#b4bfb8" stroke-width="1"/><rect x="30" y="4" width="7" height="31" fill="#cd212a"/><path d="M6 3 V28 A18 18 0 0 0 42 28 V3" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>"""
 
 
 def pfile(key, lang):
@@ -226,7 +290,8 @@ def header(page, lang, t):
         for p in PAGES
     )
     other = t["other"]
-    return f"""<header class="site-header">
+    draft = f'<div class="draft" role="note">{t["draft"]}</div>' if C.PREVIEW else ""
+    return f"""{draft}<header class="site-header">
 <div class="tricolor" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="header-in">
 <a class="brand" href="{href('home', lang)}" aria-label="{C.COMPANY}">{LOGO_SVG}<div><b>BOSARI</b><span>{t['tagline']}</span></div></a>
@@ -254,6 +319,9 @@ def address_block(t, lang):
         rows.append(f'<p>{c["mail"]}: <a href="mailto:{C.EMAIL}">{C.EMAIL}</a></p>')
     if C.VAT:
         rows.append(f'<p>{c["vat"]}: {C.VAT}</p>')
+    hours = C.HOURS_IT if lang == "it" else C.HOURS_EN
+    if hours:
+        rows.append(f'<p>{c["hours"]}: {hours}</p>')
     return "<address>" + "".join(rows) + "</address>"
 
 
@@ -301,17 +369,41 @@ def page_home(lang, t):
 
 def page_company(lang, t):
     c = t["company"]
-    who = "".join(f"<p class=\"lead\">{p}</p>" for p in c["who"])
-    facts = "".join(f"<div><b>{v}</b><span>{l}</span></div>" for v, l in c["facts"])
+    who = "".join(f'<p class="lead">{p}</p>' for p in c["who"])
+    facts = "".join(f"<div><b>{val}</b><span>{label}</span></div>" for val, label in c["facts"])
+    story = "".join(f"<p>{p}</p>" for p in c["story"])
+    steps = "".join(f"<li><b>{n}</b><span>{d}</span></li>" for n, d in c["proc"])
     vals = "".join(f'<article class="card"><h3>{n}</h3><p>{d}</p></article>' for n, d in c["vals"])
     refs = "".join(f"<li>{r}</li>" for r in c["ref"])
     return (
         hero(c["h1"], c["sub"])
         + f'<section><div class="wrap"><h2>{c["who_h"]}</h2><div class="rule"></div>{who}</div></section>'
         + f'<section class="alt"><div class="wrap"><div class="facts">{facts}</div></div></section>'
-        + f'<section><div class="wrap"><h2>{c["val_h"]}</h2><div class="rule"></div><div class="grid g3">{vals}</div></div></section>'
+        + f'<section><div class="wrap"><h2>{c["story_h"]}</h2><div class="rule"></div><div class="prose">{story}</div></div></section>'
+        + f'<section class="alt"><div class="wrap"><h2>{c["val_h"]}</h2><div class="rule"></div><div class="grid g3">{vals}</div></div></section>'
+        + f'<section><div class="wrap"><h2>{c["proc_h"]}</h2><div class="rule"></div><ol class="steps">{steps}</ol></div></section>'
         + f'<section class="alt"><div class="wrap"><h2>{c["ref_h"]}</h2><div class="rule"></div><ul class="ticks">{refs}</ul></div></section>'
     )
+
+
+def page_services(lang, t):
+    s_ = t["services"]
+    cards = "".join(f'<article class="card"><h3>{n}</h3><p>{d}</p></article>' for n, d in s_["items"])
+    return (
+        hero(s_["h1"], s_["sub"])
+        + f'<section><div class="wrap"><p class="lead">{s_["intro"]}</p><div class="grid g3">{cards}</div></div></section>'
+        + f'<section class="alt"><div class="wrap"><h2>{s_["cta_h"]}</h2><div class="rule"></div><p class="lead">{s_["cta"]}</p>'
+        + f'<p><a class="btn btn-green" href="{href("contacts", lang)}">{s_["btn"]}</a></p></div></section>'
+    )
+
+
+def page_news(lang, t):
+    n = t["news"]
+    items = "".join(
+        f'<article class="news"><time datetime="{iso}">{label}</time><h3>{title}</h3><p>{text}</p></article>'
+        for iso, label, title, text in n["items"]
+    )
+    return hero(n["h1"], n["sub"]) + f'<section><div class="wrap"><div class="news-list">{items}</div></div></section>'
 
 
 def spec_tables(prod, lang):
@@ -341,7 +433,8 @@ def page_products(lang, t):
         cards = []
         for pid in f["products"]:
             pr = P.PRODUCTS[pid]
-            img = f'<img src="../img/{pr["thumb"]}" alt="{esc(v(pr["subtitle"], lang))}" loading="lazy">' if pr["thumb"] else ""
+            thumb = next((fn.replace("{lang}", lang) for fn in pr["thumbs"] if os.path.exists(os.path.join(SITE, "img", fn.replace("{lang}", lang)))), None)
+            img = f'<img src="../img/{thumb}" alt="{esc(v(pr["subtitle"], lang))}" loading="lazy">' if thumb else ""
             keys = "".join(f"<li>{k}</li>" for k in pr["key"][lang])
             cards.append(
                 f'<article class="card product-card">{img}<h3>{esc(pr["name"])}</h3><p>{esc(v(pr["subtitle"], lang))}</p>'
@@ -375,8 +468,10 @@ def page_product(pid, lang, t):
                 body += "<ol>" + "".join(f"<li>{x}</li>" for x in pr["construction"][lang]) + "</ol>"
     keys = "".join(f"<li>{k}</li>" for k in pr["key"][lang])
     gallery = ""
-    if pr["images"]:
-        figs = "".join(f'<figure><img src="../img/{fn}" alt="{esc(v(cap, lang))}" loading="lazy"><figcaption>{v(cap, lang)}</figcaption></figure>' for fn, cap in pr["images"])
+    imgs = [(fn.replace("{lang}", lang), cap) for fn, cap in pr["images"]]
+    imgs = [(fn, cap) for fn, cap in imgs if os.path.exists(os.path.join(SITE, "img", fn))]
+    if imgs:
+        figs = "".join(f'<figure><img src="../img/{fn}" alt="{esc(v(cap, lang))}" loading="lazy"><figcaption>{v(cap, lang)}</figcaption></figure>' for fn, cap in imgs)
         gallery = f'<section class="alt"><div class="wrap"><h2>{p["images_h"]}</h2><div class="rule"></div><div class="gallery">{figs}</div></div></section>'
     return (
         hero(esc(pr["name"]), esc(v(pr["subtitle"], lang)))
@@ -422,9 +517,10 @@ document.getElementById('req').addEventListener('submit', function (e) {{
     )
 
 
-BUILDERS = {"home": page_home, "company": page_company, "products": page_products, "contacts": page_contacts}
+BUILDERS = {"home": page_home, "company": page_company, "products": page_products,
+            "services": page_services, "news": page_news, "contacts": page_contacts}
 
-FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#fff"/><rect width="21.3" height="64" fill="#008c45"/><rect x="42.7" width="21.3" height="64" fill="#cd212a"/><text x="32" y="44" font-family="Arial,sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="#17211c">B</text></svg>"""
+FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" fill="#fff"/><rect x="11" y="4" width="7" height="31" fill="#008c45"/><rect x="20.5" y="4" width="7" height="31" fill="#fff" stroke="#b4bfb8" stroke-width="1"/><rect x="30" y="4" width="7" height="31" fill="#cd212a"/><path d="M6 3 V28 A18 18 0 0 0 42 28 V3" fill="none" stroke="#17211c" stroke-width="3.5" stroke-linecap="round"/></svg>"""
 
 REDIRECT = """<!doctype html>
 <html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">

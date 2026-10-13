@@ -28,27 +28,36 @@ porta alla stessa pagina nell'altra lingua.
 Dopo ogni modifica: `python3 build.py`. Le pagine finite sono in `site/`.
 Per vederle basta aprire `site/index.html` nel browser.
 
-## Da sostituire / confermare (importante)
+## Contenuti INVENTATI (segnaposto) – da sostituire prima di pubblicare
 
-Prodotti (testi inglesi e dati tecnici) ricavati dagli screenshot del sito attuale forniti dal
-cliente. Il sito originale e' solo in inglese: **le versioni italiane sono traduzioni da far
-rivedere**. Per tutto il resto www.bosari.it non era raggiungibile.
+Su richiesta del cliente, tutto ciò che mancava e' stato inventato per avere una bozza completa.
+Finché `PREVIEW = True` in `config.py`, ogni pagina mostra in alto un banner rosso "BOZZA" e ha il
+`noindex`: con `PREVIEW = False` il banner sparisce e il sito entra su Google, quindi **prima**
+di farlo va sostituito tutto quanto segue.
 
-1. **Immagine di copertina**: `site/img/hero.jpg` e' un segnaposto generato
-   (`make_hero.py`). Va sostituita con la foto vera, leggermente sfuocata, di un cartiglio
-   di un progetto reale con righello e strumenti appoggiati (1920x900 circa, sotto 300 KB).
-2. **Foto e disegni dei prodotti**: ritagliati dagli screenshot, quindi a bassa risoluzione.
-   Servono i file originali (`site/img/`). Manca la foto del U-COOL 1200/50.
-3. **Logo**: in testata c'e' un marchio provvisorio tricolore + scritta. Va messo il logo vero.
-4. **Profilo aziendale, Home, Services, News**: non visti. I testi del profilo sono ricavati
-   dalle pagine prodotto; il vecchio sito aveva anche le voci "Services" e "News": da decidere se tenerle.
-5. **Indirizzo**: gli elenchi riportano sia Via Eugenio Montale 14 sia Via Grazia Deledda 10/M
-   a Opera. La mappa usa `MAP_QUERY` in `config.py`.
-6. **Telefono, email, partita IVA**: telefono e partita IVA mancanti; l'email
-   `info@bosari.it` e' provvisoria ed e' quella che riceve le richieste del modulo contatti.
-7. **Anno di fondazione** (1996, da registro imprese) da verificare.
-8. **Pubblicazione**: in `config.py` mettere `PREVIEW = False` e il dominio definitivo,
-   poi `python3 build.py`. Caricare il contenuto di `site/` sull'hosting.
+| Cosa | Dove | Note |
+|---|---|---|
+| Telefono `+39 02 1234 5678`, partita IVA `IT01234567890`, orari | `config.py` | segnaposto |
+| Email `info@bosari.it` | `config.py` | riceve le richieste del modulo contatti: verificare che esista |
+| Indirizzo Via Montale 14 | `config.py` | gli elenchi riportano anche Via Grazia Deledda 10/M |
+| Anno di fondazione 1996 | `config.py` | da registro imprese, da verificare |
+| Storia, "Come lavoriamo", approccio, settori | `build.py` (`T[..]["company"]`) | testi scritti da zero |
+| Pagina Servizi (5 servizi) | `build.py` (`T[..]["services"]`) | inventata |
+| Pagina Novità (3 notizie con date) | `build.py` (`T[..]["news"]`) | inventata, date comprese |
+| Logo (tubo a U + tre alette tricolore) | `build.py` (`LOGO_SVG`, `FAVICON`) | disegnato per la bozza |
+| Foto di copertina (cartiglio sfuocato) | `site/img/hero.jpg`, `make_hero.py` | immagine generata |
+| Schema del U-COOL | `site/img/ucool-it.svg`, `ucool-en.svg`, `make_ucool.py` | disegno illustrativo |
+
+## Preso dal sito attuale (screenshot del cliente)
+
+Testi inglesi e dati tecnici dei 4 prodotti (ATLANTIS BAE6/BAE9, COLUMBUS 1000, U-COOL 1200/50),
+con 5 foto/disegni ritagliati (bassa risoluzione). Le versioni italiane sono traduzioni da far rivedere.
+Il vecchio menu era Home, Company Profile, Products, Services, News: qui e' lo stesso, piu' Contatti.
+
+## Per usare la foto vera del U-COOL
+
+Salvarla come `site/img/ucool-foto.jpg` e lanciare `python3 build.py`: compare nella scheda e
+nell'elenco al posto dello schema. Lo stesso vale per la foto di copertina (`site/img/hero.jpg`).
 
 ## Note tecniche
 

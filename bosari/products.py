@@ -105,7 +105,7 @@ PRODUCTS = {
         "note": ATLANTIS_NOTE,
         "images": [("atlantis-foto.jpg", L("Raffreddatori ATLANTIS", "ATLANTIS coolers")),
                    ("bae6-disegno.png", L("Disegno quotato BAE6", "BAE6 outline drawing"))],
-        "thumb": "atlantis-foto.jpg",
+        "thumbs": ["atlantis-foto.jpg"],
     },
     "bae9": {
         "file": "atlantis-bae9.html",
@@ -121,7 +121,7 @@ PRODUCTS = {
         "note": ATLANTIS_NOTE,
         "images": [("atlantis-foto.jpg", L("Raffreddatori ATLANTIS", "ATLANTIS coolers")),
                    ("bae9-disegno.png", L("Disegno quotato BAE9", "BAE9 outline drawing"))],
-        "thumb": "atlantis-foto.jpg",
+        "thumbs": ["atlantis-foto.jpg"],
     },
     "columbus1000": {
         "file": "columbus-1000.html",
@@ -171,7 +171,7 @@ PRODUCTS = {
         "images": [("columbus-1.jpg", L("COLUMBUS 1000 aperto", "COLUMBUS 1000 open")),
                    ("columbus-2.jpg", L("COLUMBUS 1000, lato ventole", "COLUMBUS 1000, fan side")),
                    ("columbus-3.jpg", L("COLUMBUS 1000, retro", "COLUMBUS 1000, rear"))],
-        "thumb": "columbus-2.jpg",
+        "thumbs": ["columbus-2.jpg"],
     },
     "ucool1200": {
         "file": "u-cool-1200-50.html",
@@ -243,7 +243,9 @@ PRODUCTS = {
             ]),
         ],
         "note": None,
-        "images": [],
-        "thumb": None,
+        # ucool-foto.jpg = foto vera (da aggiungere); in sua assenza si usa lo schema illustrativo inventato
+        "images": [("ucool-foto.jpg", L("U-COOL 1200/50", "U-COOL 1200/50")),
+                   ("ucool-{lang}.svg", L("Schema illustrativo (inventato)", "Illustrative sketch (invented)"))],
+        "thumbs": ["ucool-foto.jpg", "ucool-{lang}.svg"],
     },
 }

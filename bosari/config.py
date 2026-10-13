@@ -5,7 +5,7 @@
 
 COMPANY = "Bosari Thermal Management S.r.l."
 SHORT = "Bosari"
-BASE_URL = "https://www.bosari.it/"      # DA CONFERMARE: dominio definitivo
+BASE_URL = "https://sagardelledonne.github.io/immobiliare4s/bosari/"   # anteprima su GitHub Pages; col dominio vero: "https://www.bosari.it/"
 PREVIEW = True                           # True = pagine con noindex; False quando va online
 
 # Indirizzo: gli elenchi pubblici riportano due indirizzi diversi a Opera (MI).

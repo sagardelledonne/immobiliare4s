@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://sagardelledonne.github.io/immobiliare4s/bosari/sitemap.xml

@@ -109,16 +109,6 @@ ul.ticks li::before { content: ""; position: absolute; left: 0; top: .6em; width
 .subnav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 32px; padding: 0; list-style: none; }
 .subnav a { display: block; padding: 8px 16px; border: 1px solid var(--green); text-decoration: none; font-weight: 600; font-size: 15px; background: var(--white); }
 .subnav a:hover { background: var(--green); color: #fff; }
-.product { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; padding: 32px 0; border-top: 1px solid var(--line); }
-.product:first-of-type { border-top: 0; }
-.product .tag { display: inline-block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #fff; background: var(--red); padding: 2px 10px; margin-bottom: 8px; }
-.spec { border: 1px solid var(--line); background: var(--white); }
-.spec h4 { margin: 0; padding: 10px 16px; background: var(--green); color: #fff; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
-.spec dl { margin: 0; }
-.spec dl div { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); }
-.spec dl div:first-child { border-top: 0; }
-.spec dt { flex: 0 0 38%; color: var(--muted); font-size: 15px; }
-.spec dd { margin: 0; font-weight: 600; }
 .note { border-left: 4px solid var(--red); background: var(--green-tint); padding: 14px 18px; margin: 24px 0 0; font-size: 16px; }
 
 /* contatti e mappa */
@@ -154,3 +144,26 @@ textarea { min-height: 150px; resize: vertical; }
   .site-header nav, .lang, .hero::before, .map iframe { display: none; }
   .hero { background: none; color: #000; }
 }
+
+/* schede prodotto */
+.family { padding: 24px 0 8px; }
+.family + .family { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 40px; }
+.product-card { border-top-color: var(--green) !important; }
+.product-card img { width: 100%; max-height: 190px; object-fit: contain; background: #fff; border: 1px solid var(--line); margin-bottom: 14px; padding: 6px; }
+.product-card .btn { margin-top: 6px; }
+.back { margin: 0 0 24px; font-weight: 600; }
+.detail { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+.detail .text h3 { margin-top: 24px; }
+.detail ol { padding-left: 22px; }
+.detail ol li { margin-bottom: 8px; }
+.spec-table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--line); margin: 0 0 24px; font-size: 16px; }
+.spec-table caption { text-align: left; background: var(--green); color: #fff; padding: 10px 14px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; }
+.spec-table th, .spec-table td { padding: 9px 14px; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+.spec-table th { font-weight: 400; color: var(--muted); width: 55%; }
+.spec-table td { font-weight: 600; }
+.foot-note { font-size: 14px; color: var(--muted); margin: -12px 0 24px; }
+.gallery { display: flex; flex-wrap: wrap; gap: 24px; }
+.gallery figure { margin: 0; background: var(--white); border: 1px solid var(--line); padding: 10px; }
+.gallery img { height: 300px; width: auto; max-width: 100%; object-fit: contain; }
+.gallery figcaption { font-size: 14px; color: var(--muted); padding-top: 8px; }
+@media (max-width: 860px) { .detail { grid-template-columns: 1fr; gap: 24px; } .spec-table th { width: 48%; } }

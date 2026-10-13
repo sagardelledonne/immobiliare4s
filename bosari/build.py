@@ -2,9 +2,11 @@
 # Uso:  python3 build.py
 # I testi sono nei dizionari T["it"] e T["en"]: modificare li' e rilanciare.
 import os
+import re
 from urllib.parse import quote_plus
 
 import config as C
+import products as P
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.join(ROOT, "site")
@@ -24,72 +26,56 @@ T = {
         "skip": "Vai al contenuto",
         "tagline": "Thermal Management",
         "title": {
-            "home": "Bosari Thermal Management | Scambiatori e raffreddatori a heat pipe",
+            "home": "Bosari Thermal Management | Raffreddamento per elettronica di potenza",
             "company": "Profilo aziendale | Bosari Thermal Management",
             "products": "Prodotti | Bosari Thermal Management",
             "contacts": "Contatti e come raggiungerci | Bosari Thermal Management",
         },
         "desc": {
-            "home": "Bosari Thermal Management progetta e produce scambiatori di calore e raffreddatori a heat pipe per l'elettronica di potenza e le applicazioni ferrotranviarie. Opera (MI).",
-            "company": "Chi è Bosari Thermal Management: competenza nella gestione termica con tecnologia heat pipe, a Opera (Milano).",
-            "products": "Le linee di prodotto Bosari: scambiatori di calore a heat pipe, raffreddatori isolati elettricamente fino a 12 kV, soluzioni su specifica del cliente.",
+            "home": "Bosari Thermal Management progetta e produce raffreddatori ad acqua ATLANTIS, scambiatori COLUMBUS e sistemi a heat pipe U-COOL per l'elettronica di potenza. Opera (MI).",
+            "company": "Chi è Bosari Thermal Management: gestione termica per l'elettronica di potenza, a Opera (Milano).",
+            "products": "Prodotti Bosari: raffreddatori ad acqua ATLANTIS BAE6 e BAE9, scambiatore COLUMBUS 1000, sistema a heat pipe U-COOL 1200/50, con schede tecniche.",
             "contacts": "Contatti, richiesta di informazioni e mappa per raggiungere Bosari Thermal Management a Opera (MI).",
         },
         "home": {
-            "h1": "Gestione termica con tecnologia heat pipe",
-            "sub": "Scambiatori di calore e raffreddatori per l'elettronica di potenza: più superficie di scambio, meno peso e ingombro rispetto ai sistemi di raffreddamento tradizionali.",
+            "h1": "Raffreddamento per l'elettronica di potenza",
+            "sub": "Raffreddatori ad acqua, scambiatori di calore e sistemi a heat pipe per l'industria, la saldatura e la trazione ferroviaria.",
             "cta1": "Scopri i prodotti", "cta2": "Richiedi informazioni",
-            "intro_h": "Raffreddare bene, in poco spazio",
-            "intro": "Bosari Thermal Management si occupa di gestione termica per apparati elettrici ed elettronici. Le nostre soluzioni si basano sulla tecnologia heat pipe, che permette superfici radianti più ampie a parità di peso e dimensioni.",
+            "intro_h": "Dissipare tanto calore, in poco spazio",
+            "intro": "Bosari Thermal Management (BTM) progetta e produce soluzioni per smaltire il calore di componenti elettronici di potenza come tiristori, GTO e IGBT, e per raffreddare armadi elettronici e camere ambientali.",
             "cards_h": "Le linee di prodotto",
-            "cards": [
-                ("Scambiatori di calore a heat pipe", "Superfici di scambio ampie, peso e dimensioni ridotti rispetto ai sistemi di raffreddamento convenzionali.", "products#scambiatori"),
-                ("Raffreddatori isolati elettricamente", "Raffreddatori a heat pipe con isolamento elettrico fino a 12 kV, per apparati di potenza.", "products#isolati"),
-                ("Soluzioni su specifica", "Progettazione e sviluppo di soluzioni termiche a partire dalle esigenze e dai disegni del cliente.", "products#specifica"),
-            ],
-            "more": "Maggiori informazioni",
+            "more": "Scopri la linea",
+            "figures": [("4.000 W", "dissipabili da un raffreddatore ATLANTIS BAE9, sulle due facce"), ("100 W/K", "efficienza di raffreddamento dello scambiatore COLUMBUS 1000"), ("1.200 W", "dissipati a convezione naturale dal sistema U-COOL 1200/50")],
             "app_h": "Dove lavorano le nostre soluzioni",
-            "app": "Le applicazioni tipiche comprendono gli apparati per metropolitane e tram e, più in generale, l'elettronica di potenza dove peso, ingombro e isolamento contano.",
+            "app": "Applicazioni industriali pesanti, saldatura, trazione elettrica leggera e pesante, veicoli ferroviari, armadi elettronici e camere ambientali.",
             "cta_h": "Avete un progetto o una specifica?",
-            "cta": "Scriveteci: valutiamo insieme la soluzione termica più adatta.",
+            "cta": "Scriveteci: valutiamo insieme la soluzione termica più adatta, anche su misura.",
         },
         "company": {
             "h1": "Profilo aziendale",
-            "sub": "Competenza termica al servizio dell'elettronica di potenza.",
+            "sub": "Gestione termica per l'elettronica di potenza.",
             "who_h": "Chi siamo",
             "who": [
-                "Bosari Thermal Management S.r.l. è un'azienda con sede a Opera, alle porte di Milano, specializzata nella gestione termica di apparati elettrici ed elettronici.",
-                "La tecnologia di riferimento è quella delle heat pipe: tubi sigillati che trasportano il calore in modo molto efficiente, consentendo scambiatori e raffreddatori più leggeri e compatti dei sistemi convenzionali.",
+                "Bosari Thermal Management S.r.l. (BTM) ha sede a Opera, alle porte di Milano, e si occupa di gestione termica per l'elettronica di potenza.",
+                "Le sue linee di prodotto sono i raffreddatori ad acqua ATLANTIS, gli scambiatori di calore COLUMBUS per armadi elettronici e i sistemi a heat pipe U-COOL.",
             ],
-            "facts": [(C.FOUNDED, "anno di fondazione"), ("Opera (MI)", "sede"), ("12 kV", "isolamento elettrico dei raffreddatori"), ("IT · EN", "assistenza in italiano e inglese")],
+            "facts": [(C.FOUNDED, "anno di fondazione"), ("Opera (MI)", "sede"), ("4.000 W", "massima potenza dissipata da un raffreddatore ATLANTIS"), ("IP55 · NEMA 12", "grado di protezione degli scambiatori COLUMBUS")],
             "val_h": "Il nostro approccio",
             "vals": [
-                ("Su misura", "Ogni applicazione ha i suoi vincoli: partiamo dal disegno e dalle condizioni di lavoro del cliente."),
-                ("Leggerezza e compattezza", "Maggiore superficie radiante con meno peso e meno ingombro."),
-                ("Sicurezza elettrica", "Soluzioni con isolamento elettrico adatto agli apparati di potenza."),
+                ("Su misura", "Le soluzioni si adattano al cliente: diametro di contatto dei raffreddatori fino a 55 o 85 mm, raccordi del fluido in alluminio o titanio, sistemi di controllo su richiesta. Il sistema U-COOL è nato dalla specifica di un cliente."),
+                ("Materiali controllati", "I materiali e i componenti sono selezionati e controllati per garantire la conformità alle specifiche richieste."),
+                ("Pensati per ambienti severi", "Prodotti per applicazioni industriali e ferroviarie, con prove di urti e vibrazioni secondo IEC 77 §16."),
             ],
             "ref_h": "Settori",
-            "ref": ["Trazione ferrotranviaria (metropolitane e tram)", "Elettronica di potenza e convertitori", "Apparati industriali che richiedono raffreddamento senza ventilazione dedicata"],
-            "note": "Testi da completare e verificare con l'azienda: storia, certificazioni, numeri e referenze.",
+            "ref": ["Trazione elettrica leggera e pesante, veicoli ferroviari", "Industria pesante e saldatura", "Armadi elettronici e camere ambientali"],
+            "note": "Testo del profilo aziendale originale da inserire.",
         },
         "products": {
-            "h1": "Prodotti", "sub": "Le linee di prodotto Bosari.",
-            "items": [
-                ("scambiatori", "Scambiatori di calore a heat pipe",
-                 "Gli scambiatori a heat pipe offrono superfici radianti più ampie e permettono di risparmiare peso e dimensioni rispetto ai sistemi di raffreddamento convenzionali.",
-                 ["Superfici di scambio ampie", "Peso e ingombro ridotti", "Adatti ad apparati per trazione e potenza"],
-                 [("Tecnologia", "Heat pipe")]),
-                ("isolati", "Raffreddatori a heat pipe isolati",
-                 "Raffreddatori a heat pipe che garantiscono l'isolamento elettrico tra componente da raffreddare e dissipatore, per apparati di potenza ad alta tensione.",
-                 ["Isolamento elettrico fino a 12 kV", "Impiego su apparati per metropolitane e tram", "Raffreddamento di moduli di potenza"],
-                 [("Tecnologia", "Heat pipe"), ("Isolamento elettrico", "fino a 12 kV")]),
-                ("specifica", "Soluzioni su specifica del cliente",
-                 "Per esigenze particolari sviluppiamo il dissipatore o lo scambiatore a partire dal disegno e dalle condizioni di funzionamento.",
-                 ["Dimensionamento termico", "Disegno e prototipo", "Produzione in serie"],
-                 []),
-            ],
-            "spec_h": "Caratteristiche", "request": "Richiedi informazioni su questa linea",
-            "note": "Schede tecniche, dimensioni e codici prodotto da inserire con i dati forniti dall'azienda.",
+            "h1": "Prodotti", "sub": "Raffreddatori ad acqua, scambiatori di calore e sistemi a heat pipe.",
+            "open": "Scheda tecnica", "back": "← Tutti i prodotti", "request": "Richiedi informazioni su questo prodotto",
+            "spec_h": "Caratteristiche tecniche", "images_h": "Immagini",
+            "title": "{name} | Bosari Thermal Management",
+            "key_h": "In sintesi",
         },
         "contacts": {
             "h1": "Contatti", "sub": "Richiedete informazioni o un'offerta.",
@@ -111,72 +97,56 @@ T = {
         "skip": "Skip to content",
         "tagline": "Thermal Management",
         "title": {
-            "home": "Bosari Thermal Management | Heat pipe heat exchangers and coolers",
+            "home": "Bosari Thermal Management | Cooling for power electronics",
             "company": "Company Profile | Bosari Thermal Management",
             "products": "Products | Bosari Thermal Management",
             "contacts": "Contacts and how to reach us | Bosari Thermal Management",
         },
         "desc": {
-            "home": "Bosari Thermal Management designs and manufactures heat pipe heat exchangers and coolers for power electronics and rail applications. Opera (Milan), Italy.",
-            "company": "About Bosari Thermal Management: thermal management expertise based on heat pipe technology, in Opera (Milan), Italy.",
-            "products": "Bosari product lines: heat pipe heat exchangers, electrically insulated coolers up to 12 kV, customer-specific solutions.",
+            "home": "Bosari Thermal Management designs and manufactures ATLANTIS water coolers, COLUMBUS heat exchangers and U-COOL heat pipe systems for power electronics. Opera (Milan), Italy.",
+            "company": "About Bosari Thermal Management: thermal management for power electronics, in Opera (Milan), Italy.",
+            "products": "Bosari products: ATLANTIS BAE6 and BAE9 water coolers, COLUMBUS 1000 heat exchanger, U-COOL 1200/50 heat pipe system, with technical data.",
             "contacts": "Contacts, information requests and map to reach Bosari Thermal Management in Opera (Milan), Italy.",
         },
         "home": {
-            "h1": "Thermal management with heat pipe technology",
-            "sub": "Heat exchangers and coolers for power electronics: wider heat-exchange surfaces, less weight and smaller size than conventional cooling systems.",
+            "h1": "Cooling for power electronics",
+            "sub": "Water coolers, heat exchangers and heat pipe systems for industry, welding and railway traction.",
             "cta1": "Discover the products", "cta2": "Request information",
-            "intro_h": "Efficient cooling in a small space",
-            "intro": "Bosari Thermal Management provides thermal management for electrical and electronic equipment. Our solutions are based on heat pipe technology, which allows wider radiating surfaces for the same weight and size.",
+            "intro_h": "Dissipating a lot of heat in a small space",
+            "intro": "Bosari Thermal Management (BTM) designs and manufactures solutions to remove the heat of power electronic components such as thyristors, GTOs and IGBTs, and to cool electronic cabinets and environmental chambers.",
             "cards_h": "Product lines",
-            "cards": [
-                ("Heat pipe heat exchangers", "Wide exchange surfaces, reduced weight and dimensions compared with conventional cooling systems.", "products#scambiatori"),
-                ("Electrically insulated coolers", "Heat pipe coolers with electrical insulation up to 12 kV, for power equipment.", "products#isolati"),
-                ("Customer-specific solutions", "Design and development of thermal solutions starting from the customer's requirements and drawings.", "products#specifica"),
-            ],
-            "more": "Learn more",
+            "more": "Discover the line",
+            "figures": [("4,000 W", "dissipated by one ATLANTIS BAE9 cooler, on both sides"), ("100 W/K", "cooling efficiency of the COLUMBUS 1000 heat exchanger"), ("1,200 W", "dissipated by natural convection by the U-COOL 1200/50 system")],
             "app_h": "Where our solutions work",
-            "app": "Typical applications include equipment for subways and trams and, more generally, power electronics where weight, size and electrical insulation matter.",
+            "app": "Heavy industrial applications, welding, light and heavy electrical traction, railway vehicles, electronic cabinets and environmental chambers.",
             "cta_h": "Do you have a project or a specification?",
-            "cta": "Write to us: we will assess the most suitable thermal solution together.",
+            "cta": "Write to us: we will assess the most suitable thermal solution together, tailor-made if needed.",
         },
         "company": {
             "h1": "Company Profile",
-            "sub": "Thermal expertise at the service of power electronics.",
+            "sub": "Thermal management for power electronics.",
             "who_h": "Who we are",
             "who": [
-                "Bosari Thermal Management S.r.l. is based in Opera, on the edge of Milan, and specialises in thermal management of electrical and electronic equipment.",
-                "Our reference technology is the heat pipe: a sealed tube that carries heat very efficiently, making heat exchangers and coolers lighter and more compact than conventional systems.",
+                "Bosari Thermal Management S.r.l. (BTM) is based in Opera, on the edge of Milan, and deals with thermal management for power electronics.",
+                "Its product lines are the ATLANTIS water coolers, the COLUMBUS heat exchangers for electronic cabinets and the U-COOL heat pipe systems.",
             ],
-            "facts": [(C.FOUNDED, "year founded"), ("Opera (MI)", "headquarters"), ("12 kV", "electrical insulation of the coolers"), ("IT · EN", "support in Italian and English")],
+            "facts": [(C.FOUNDED, "year founded"), ("Opera (MI)", "headquarters"), ("4,000 W", "maximum power dissipated by an ATLANTIS cooler"), ("IP55 · NEMA 12", "protection of the COLUMBUS exchangers")],
             "val_h": "Our approach",
             "vals": [
-                ("Tailor-made", "Every application has its own constraints: we start from the customer's drawing and operating conditions."),
-                ("Light and compact", "More radiating surface with less weight and less space."),
-                ("Electrical safety", "Solutions with electrical insulation suited to power equipment."),
+                ("Tailor-made", "Solutions adapt to the customer: cooler contact diameter up to 55 or 85 mm, aluminium or titanium fluid nipples, control systems on request. The U-COOL system was born from a customer's specification."),
+                ("Controlled materials", "Materials and components are selected and quality controlled to ensure compliance with the requested specifications."),
+                ("Made for severe environments", "Products for industrial and railway applications, with shock and vibration tests as per IEC 77 §16."),
             ],
             "ref_h": "Sectors",
-            "ref": ["Rail traction (subways and trams)", "Power electronics and converters", "Industrial equipment needing cooling without dedicated ventilation"],
-            "note": "Text to be completed and checked with the company: history, certifications, figures and references.",
+            "ref": ["Light and heavy electrical traction, railway vehicles", "Heavy industry and welding", "Electronic cabinets and environmental chambers"],
+            "note": "Original company profile text to be added.",
         },
         "products": {
-            "h1": "Products", "sub": "Bosari product lines.",
-            "items": [
-                ("scambiatori", "Heat pipe heat exchangers",
-                 "Heat pipe heat exchangers offer wider radiating surfaces and save weight and dimensions compared with conventional cooling systems.",
-                 ["Wide exchange surfaces", "Reduced weight and size", "Suited to traction and power equipment"],
-                 [("Technology", "Heat pipe")]),
-                ("isolati", "Insulated heat pipe coolers",
-                 "Heat pipe coolers that provide electrical insulation between the component to be cooled and the heat sink, for high-voltage power equipment.",
-                 ["Electrical insulation up to 12 kV", "Used in subway and tram equipment", "Cooling of power modules"],
-                 [("Technology", "Heat pipe"), ("Electrical insulation", "up to 12 kV")]),
-                ("specifica", "Customer-specific solutions",
-                 "For special needs we develop the heat sink or heat exchanger starting from the drawing and operating conditions.",
-                 ["Thermal sizing", "Design and prototype", "Series production"],
-                 []),
-            ],
-            "spec_h": "Features", "request": "Request information on this line",
-            "note": "Data sheets, dimensions and product codes to be added from the data supplied by the company.",
+            "h1": "Products", "sub": "Water coolers, heat exchangers and heat pipe systems.",
+            "open": "Data sheet", "back": "← All products", "request": "Request information on this product",
+            "spec_h": "Technical characteristics", "images_h": "Images",
+            "title": "{name} | Bosari Thermal Management",
+            "key_h": "At a glance",
         },
         "contacts": {
             "h1": "Contacts", "sub": "Ask for information or a quotation.",
@@ -197,8 +167,14 @@ T = {
 LOGO_SVG = """<svg viewBox="0 0 44 44" aria-hidden="true" focusable="false"><rect width="14.67" height="44" fill="#008c45"/><rect x="14.67" width="14.66" height="44" fill="#fff" stroke="#d6ddd8"/><rect x="29.33" width="14.67" height="44" fill="#cd212a"/></svg>"""
 
 
+def pfile(key, lang):
+    if key in PAGES:
+        return PAGES[key][lang]
+    return P.PRODUCTS[key]["file"]      # stessa pagina in IT e EN
+
+
 def href(page, lang, anchor=""):
-    return PAGES[page][lang] + (("#" + anchor) if anchor else "")
+    return pfile(page, lang) + (("#" + anchor) if anchor else "")
 
 
 def link_target(raw, lang):
@@ -210,19 +186,19 @@ def esc(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
-def head(page, lang, t):
+def head(page, lang, t, title, desc):
     other = t["other"]
-    canon = C.BASE_URL + lang + "/" + PAGES[page][lang]
-    alt_it = C.BASE_URL + "it/" + PAGES[page]["it"]
-    alt_en = C.BASE_URL + "en/" + PAGES[page]["en"]
+    canon = C.BASE_URL + lang + "/" + pfile(page, lang)
+    alt_it = C.BASE_URL + "it/" + pfile(page, "it")
+    alt_en = C.BASE_URL + "en/" + pfile(page, "en")
     robots = '<meta name="robots" content="noindex">\n' if C.PREVIEW else ""
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(t['title'][page])}</title>
-<meta name="description" content="{esc(t['desc'][page])}">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}">
 {robots}<meta name="theme-color" content="#008c45">
 <link rel="canonical" href="{canon}">
 <link rel="alternate" hreflang="it" href="{alt_it}">
@@ -232,8 +208,8 @@ def head(page, lang, t):
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{t['locale']}">
 <meta property="og:site_name" content="{C.COMPANY}">
-<meta property="og:title" content="{esc(t['title'][page])}">
-<meta property="og:description" content="{esc(t['desc'][page])}">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{C.BASE_URL}img/hero.jpg">
 <link rel="stylesheet" href="../css/style.css">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"{C.COMPANY}","url":"{C.BASE_URL}","address":{{"@type":"PostalAddress","streetAddress":"{C.ADDRESS_LINE}","postalCode":"20090","addressLocality":"Opera","addressRegion":"MI","addressCountry":"IT"}}{(',"telephone":"' + C.PHONE + '"') if C.PHONE else ''},"email":"{C.EMAIL}"}}</script>
@@ -244,8 +220,9 @@ def head(page, lang, t):
 
 
 def header(page, lang, t):
+    current = "products" if page not in PAGES else page
     items = "".join(
-        f'<li><a href="{href(p, lang)}"{" aria-current=\"page\"" if p == page else ""}>{t["nav"][p]}</a></li>'
+        f'<li><a href="{href(p, lang)}"{" aria-current=\"page\"" if p == current else ""}>{t["nav"][p]}</a></li>'
         for p in PAGES
     )
     other = t["other"]
@@ -254,7 +231,7 @@ def header(page, lang, t):
 <div class="header-in">
 <a class="brand" href="{href('home', lang)}" aria-label="{C.COMPANY}">{LOGO_SVG}<div><b>BOSARI</b><span>{t['tagline']}</span></div></a>
 <nav aria-label="Menu"><ul>{items}</ul></nav>
-<div class="lang" role="group" aria-label="Language / Lingua"><span aria-current="true">{lang.upper()}</span><a href="../{other}/{PAGES[page][other]}" hreflang="{other}" lang="{other}">{t['other_label']}</a></div>
+<div class="lang" role="group" aria-label="Language / Lingua"><span aria-current="true">{lang.upper()}</span><a href="../{other}/{pfile(page, other)}" hreflang="{other}" lang="{other}">{t['other_label']}</a></div>
 </div>
 </header>
 <main id="main">
@@ -298,19 +275,27 @@ def footer(page, lang, t):
 """
 
 
+def family_cards(lang, t, more):
+    out = []
+    for f in P.FAMILIES:
+        out.append(
+            f'<article class="card"><h3>{esc(f["name"])} · {esc(f["title"][lang])}</h3><p>{esc(f["intro"][lang])}</p>'
+            f'<a class="more" href="{href("products", lang, f["id"])}">{more} →</a></article>'
+        )
+    return "".join(out)
+
+
 def page_home(lang, t):
     h = t["home"]
     ctas = f'<a class="btn btn-red" href="{href("products", lang)}">{h["cta1"]}</a><a class="btn btn-line" href="{href("contacts", lang)}">{h["cta2"]}</a>'
-    cards = "".join(
-        f'<article class="card"><h3>{esc(n)}</h3><p>{esc(d)}</p><a class="more" href="{link_target(l, lang)}">{h["more"]} →</a></article>'
-        for n, d, l in h["cards"]
-    )
+    figs = "".join(f"<div><b>{v}</b><span>{l}</span></div>" for v, l in h["figures"])
     return (
         hero(h["h1"], h["sub"], True, ctas)
         + f'<section><div class="wrap"><h2>{h["intro_h"]}</h2><div class="rule"></div><p class="lead">{h["intro"]}</p></div></section>'
-        + f'<section class="alt"><div class="wrap"><h2>{h["cards_h"]}</h2><div class="rule"></div><div class="grid g3">{cards}</div></div></section>'
-        + f'<section><div class="wrap"><h2>{h["app_h"]}</h2><div class="rule"></div><p class="lead">{h["app"]}</p></div></section>'
-        + f'<section class="alt"><div class="wrap"><h2>{h["cta_h"]}</h2><div class="rule"></div><p class="lead">{h["cta"]}</p><p><a class="btn btn-green" href="{href("contacts", lang)}">{h["cta2"]}</a></p></div></section>'
+        + f'<section class="alt"><div class="wrap"><h2>{h["cards_h"]}</h2><div class="rule"></div><div class="grid g3">{family_cards(lang, t, h["more"])}</div></div></section>'
+        + f'<section><div class="wrap"><div class="facts">{figs}</div></div></section>'
+        + f'<section class="alt"><div class="wrap"><h2>{h["app_h"]}</h2><div class="rule"></div><p class="lead">{h["app"]}</p></div></section>'
+        + f'<section><div class="wrap"><h2>{h["cta_h"]}</h2><div class="rule"></div><p class="lead">{h["cta"]}</p><p><a class="btn btn-green" href="{href("contacts", lang)}">{h["cta2"]}</a></p></div></section>'
     )
 
 
@@ -329,23 +314,77 @@ def page_company(lang, t):
     )
 
 
+def spec_tables(prod, lang):
+    out = []
+    for group, rows in prod["specs"]:
+        trs = "".join(f"<tr><th scope=\"row\">{v(k, lang)}</th><td>{v(val, lang)}</td></tr>" for k, val in rows)
+        out.append(f'<table class="spec-table"><caption>{v(group, lang)}</caption><tbody>{trs}</tbody></table>')
+    if prod.get("note"):
+        out.append(f'<p class="foot-note">{v(prod["note"], lang)}</p>')
+    return "".join(out)
+
+
+def v(x, lang):
+    """Valore che puo' essere una stringa uguale nelle due lingue o un dizionario {it, en}."""
+    if isinstance(x, dict):
+        return x[lang]
+    if lang == "en":                       # 0,5 bar -> 0.5 bar
+        return re.sub(r"(\d),(\d)", r"\1.\2", x)
+    return x
+
+
 def page_products(lang, t):
     p = t["products"]
-    sub = "".join(f'<li><a href="#{i}">{esc(n)}</a></li>' for i, n, *_ in p["items"])
+    sub = "".join(f'<li><a href="#{f["id"]}">{esc(f["name"])}</a></li>' for f in P.FAMILIES)
     blocks = []
-    for ident, name, desc, bullets, specs in p["items"]:
-        ul = "".join(f"<li>{b}</li>" for b in bullets)
-        spec = ""
-        if specs:
-            rows = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in specs)
-            spec = f'<div class="spec"><h4>{p["spec_h"]}</h4><dl>{rows}</dl></div>'
+    for f in P.FAMILIES:
+        cards = []
+        for pid in f["products"]:
+            pr = P.PRODUCTS[pid]
+            img = f'<img src="../img/{pr["thumb"]}" alt="{esc(v(pr["subtitle"], lang))}" loading="lazy">' if pr["thumb"] else ""
+            keys = "".join(f"<li>{k}</li>" for k in pr["key"][lang])
+            cards.append(
+                f'<article class="card product-card">{img}<h3>{esc(pr["name"])}</h3><p>{esc(v(pr["subtitle"], lang))}</p>'
+                f'<ul class="ticks">{keys}</ul><a class="btn btn-green" href="{pr["file"]}">{p["open"]}</a></article>'
+            )
         blocks.append(
-            f'<div class="product" id="{ident}"><div><h2>{esc(name)}</h2><div class="rule"></div><p>{desc}</p><ul class="ticks">{ul}</ul>'
-            f'<a class="btn btn-green" href="{href("contacts", lang)}">{p["request"]}</a></div><div>{spec}</div></div>'
+            f'<div class="family" id="{f["id"]}"><h2>{esc(f["name"])} · {esc(f["title"][lang])}</h2><div class="rule"></div>'
+            f'<p class="lead">{esc(f["intro"][lang])}</p><div class="grid g3">{"".join(cards)}</div></div>'
         )
     return (
         hero(p["h1"], p["sub"])
         + f'<section><div class="wrap"><ul class="subnav">{sub}</ul>{"".join(blocks)}</div></section>'
+    )
+
+
+def page_product(pid, lang, t):
+    p = t["products"]
+    pr = P.PRODUCTS[pid]
+    fam = next(f for f in P.FAMILIES if f["id"] == pr["family"])
+    # testi: tre modelli diversi di scheda (comune ATLANTIS / paragrafi / sezioni)
+    body = ""
+    if "text" in pr:
+        paras = [x.replace("{power}", v(pr["power"], lang)) for x in P.ATLANTIS_TEXT[lang]]
+        body = "".join(f"<p>{x}</p>" for x in paras)
+    elif "paragraphs" in pr:
+        body = "".join(f"<p>{x}</p>" for x in pr["paragraphs"][lang])
+    else:
+        for i, (h, ps) in enumerate(pr["sections"][lang]):
+            body += f"<h3>{h}</h3>" + "".join(f"<p>{x}</p>" for x in ps)
+            if i == len(pr["sections"][lang]) - 1 and pr.get("construction"):
+                body += "<ol>" + "".join(f"<li>{x}</li>" for x in pr["construction"][lang]) + "</ol>"
+    keys = "".join(f"<li>{k}</li>" for k in pr["key"][lang])
+    gallery = ""
+    if pr["images"]:
+        figs = "".join(f'<figure><img src="../img/{fn}" alt="{esc(v(cap, lang))}" loading="lazy"><figcaption>{v(cap, lang)}</figcaption></figure>' for fn, cap in pr["images"])
+        gallery = f'<section class="alt"><div class="wrap"><h2>{p["images_h"]}</h2><div class="rule"></div><div class="gallery">{figs}</div></div></section>'
+    return (
+        hero(esc(pr["name"]), esc(v(pr["subtitle"], lang)))
+        + f'<section><div class="wrap"><p class="back"><a href="{href("products", lang, fam["id"])}">{p["back"]}</a></p>'
+        + f'<div class="detail"><div class="text"><h2>{p["key_h"]}</h2><div class="rule"></div><ul class="ticks">{keys}</ul>{body}'
+        + f'<p><a class="btn btn-red" href="{href("contacts", lang)}">{p["request"]}</a></p></div>'
+        + f'<div class="specs"><h2>{p["spec_h"]}</h2><div class="rule"></div>{spec_tables(pr, lang)}</div></div></div></section>'
+        + gallery
     )
 
 
@@ -401,13 +440,23 @@ location.replace(l + '/index.html');
 """
 
 
+def write(lang, fn, html):
+    with open(os.path.join(SITE, lang, fn), "w", encoding="utf-8") as fh:
+        fh.write(html)
+
+
 def main():
     for lang, t in T.items():
         os.makedirs(os.path.join(SITE, lang), exist_ok=True)
-        for page, fn in ((p, PAGES[p][lang]) for p in PAGES):
-            html = head(page, lang, t) + header(page, lang, t) + BUILDERS[page](lang, t) + footer(page, lang, t)
-            with open(os.path.join(SITE, lang, fn), "w", encoding="utf-8") as fh:
-                fh.write(html)
+        for page in PAGES:
+            html = (head(page, lang, t, t["title"][page], t["desc"][page]) + header(page, lang, t)
+                    + BUILDERS[page](lang, t) + footer(page, lang, t))
+            write(lang, PAGES[page][lang], html)
+        for pid, pr in P.PRODUCTS.items():
+            title = t["products"]["title"].format(name=pr["name"])
+            desc = f'{pr["name"]} – {v(pr["subtitle"], lang)}. ' + "; ".join(pr["key"][lang]) + "."
+            html = head(pid, lang, t, title, desc) + header(pid, lang, t) + page_product(pid, lang, t) + footer(pid, lang, t)
+            write(lang, pr["file"], html)
     with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as fh:
         fh.write(REDIRECT)
     with open(os.path.join(SITE, "favicon.svg"), "w", encoding="utf-8") as fh:
